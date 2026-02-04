@@ -46,7 +46,7 @@ cd SimpleServer
 ### Servidor Customizado
 
 ```java
-import br.com.luizgustavosgobi.simpleServer.core.server.ServerFactory;
+import br.com.luizgustavosgobi.simpleServer.core.ServerFactory;
 import br.com.luizgustavosgobi.simpleServer.core.connection.ConnectionHandler;
 
 // Implementar seu próprio ConnectionHandler

@@ -5,90 +5,116 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d97d083f-3a98-435e-a75a-f94708f8d527" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/discord.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/material_theme_project_new.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/server_properties.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradlew" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradlew.bat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/settings.gradle" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/br/com/luizgustavosgobi/simpleServer/core/beans/AnnotationManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/br/com/luizgustavosgobi/simpleServer/core/beans/annotations/AutoWired.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/br/com/luizgustavosgobi/simpleServer/core/beans/annotations/Bean.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/br/com/luizgustavosgobi/simpleServer/core/beans/annotations/Configuration.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/br/com/luizgustavosgobi/simpleServer/core/beans/processor/AnnotationProcessor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/br/com/luizgustavosgobi/simpleServer/core/beans/scanner/AnnotationProcessorScanner.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/br/com/luizgustavosgobi/simpleServer/core/beans/scanner/ClassScanner.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/br/com/luizgustavosgobi/simpleServer/core/configuration/ConfigurationManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/br/com/luizgustavosgobi/simpleServer/core/connection/ConnectionHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/br/com/luizgustavosgobi/simpleServer/core/connection/ConnectionTable.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/br/com/luizgustavosgobi/simpleServer/core/connection/DefaultConnectionTable.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/br/com/luizgustavosgobi/simpleServer/core/context/ApplicationContext.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/br/com/luizgustavosgobi/simpleServer/core/context/ContextHolder.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/br/com/luizgustavosgobi/simpleServer/core/executors/ThreadManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/br/com/luizgustavosgobi/simpleServer/core/server/Server.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/br/com/luizgustavosgobi/simpleServer/core/server/ServerFactory.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/br/com/luizgustavosgobi/simpleServer/exceptions/GenericServerException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/br/com/luizgustavosgobi/simpleServer/exceptions/TypeMismatchException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/br/com/luizgustavosgobi/simpleServer/http/HttpApplication.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/br/com/luizgustavosgobi/simpleServer/http/HttpConnectionHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/br/com/luizgustavosgobi/simpleServer/http/annotations/Controller.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/br/com/luizgustavosgobi/simpleServer/http/annotations/GetMapping.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/br/com/luizgustavosgobi/simpleServer/http/annotations/Middleware.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/br/com/luizgustavosgobi/simpleServer/http/annotations/ParametersType/PathVariable.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/br/com/luizgustavosgobi/simpleServer/http/annotations/ParametersType/RequestBody.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/br/com/luizgustavosgobi/simpleServer/http/annotations/ParametersType/RequestHeader.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/br/com/luizgustavosgobi/simpleServer/http/annotations/ParametersType/RequestParam.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/br/com/luizgustavosgobi/simpleServer/http/annotations/PostMapping.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/br/com/luizgustavosgobi/simpleServer/http/annotations/RequestMapping.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/br/com/luizgustavosgobi/simpleServer/http/entities/HttpEntity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/br/com/luizgustavosgobi/simpleServer/http/entities/RequestEntity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/br/com/luizgustavosgobi/simpleServer/http/entities/ResponseEntity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/br/com/luizgustavosgobi/simpleServer/http/enums/HttpMethod.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/br/com/luizgustavosgobi/simpleServer/http/enums/HttpStatus.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/br/com/luizgustavosgobi/simpleServer/http/exceptions/HttpException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/br/com/luizgustavosgobi/simpleServer/http/exceptions/InternalServerErrorException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/br/com/luizgustavosgobi/simpleServer/http/exceptions/InvalidHttpRequestException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/br/com/luizgustavosgobi/simpleServer/http/exceptions/InvalidJsonException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/br/com/luizgustavosgobi/simpleServer/http/exceptions/MalFormedRequestDataException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/br/com/luizgustavosgobi/simpleServer/http/exceptions/NotFoundHttpException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/br/com/luizgustavosgobi/simpleServer/http/parser/HttpContentParser.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/br/com/luizgustavosgobi/simpleServer/http/parser/HttpParser.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/br/com/luizgustavosgobi/simpleServer/http/parser/components/HttpHeaders.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/br/com/luizgustavosgobi/simpleServer/http/parser/components/HttpLine.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/br/com/luizgustavosgobi/simpleServer/http/parser/components/HttpRequestLine.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/br/com/luizgustavosgobi/simpleServer/http/parser/components/HttpResponseLine.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/br/com/luizgustavosgobi/simpleServer/http/parser/components/URI.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/br/com/luizgustavosgobi/simpleServer/http/parser/handlers/MultipartFormDataHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/br/com/luizgustavosgobi/simpleServer/http/router/MiddlewareHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/br/com/luizgustavosgobi/simpleServer/http/router/RouteHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/br/com/luizgustavosgobi/simpleServer/http/router/Router.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/br/com/luizgustavosgobi/simpleServer/http/types/BodyData.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/br/com/luizgustavosgobi/simpleServer/http/types/File.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/br/com/luizgustavosgobi/simpleServer/http/types/FormData.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/br/com/luizgustavosgobi/simpleServer/http/types/Json.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/br/com/luizgustavosgobi/simpleServer/http/utils/ConnectionUtils.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/br/com/luizgustavosgobi/simpleServer/logger/Logger.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/br/com/luizgustavosgobi/simpleServer/logger/enums/Colors.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/br/com/luizgustavosgobi/simpleServer/logger/enums/LogTypes.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/br/com/luizgustavosgobi/simpleServer/utils/DataUtils.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/test/A/As.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/test/A/Config.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/test/A/HelloService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/test/A/MyController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/test/A/SecondController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/test/HiDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/test/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/test/TestConnectionHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/server.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/copilot.data.migration.agent.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/copilot.data.migration.ask.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/copilot.data.migration.ask2agent.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/copilot.data.migration.edit.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/build.gradle.kts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/main/java/br/com/luizgustavosgobi/simpleServer/core/Console.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/main/java/br/com/luizgustavosgobi/simpleServer/core/ServerRegistry.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/main/java/br/com/luizgustavosgobi/simpleServer/core/annotation/AnnotationDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/main/java/br/com/luizgustavosgobi/simpleServer/core/configuration/ServerConfiguration.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/main/java/br/com/luizgustavosgobi/simpleServer/core/connection/ConnectionTable.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/main/java/br/com/luizgustavosgobi/simpleServer/core/context/ApplicationContextBootstrap.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/main/java/br/com/luizgustavosgobi/simpleServer/core/context/BeanDefinition.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/main/java/br/com/luizgustavosgobi/simpleServer/core/context/BeanDefinitionBuilder.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/main/java/br/com/luizgustavosgobi/simpleServer/core/context/BeanFactory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/main/java/br/com/luizgustavosgobi/simpleServer/core/context/BeanRegistry.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/main/java/br/com/luizgustavosgobi/simpleServer/core/context/BeanScope.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/main/java/br/com/luizgustavosgobi/simpleServer/core/exceptions/EOFException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/main/java/br/com/luizgustavosgobi/simpleServer/core/handlers/AcceptEventHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/main/java/br/com/luizgustavosgobi/simpleServer/core/handlers/CloseEventHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/main/java/br/com/luizgustavosgobi/simpleServer/core/handlers/ReadEventHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/main/java/br/com/luizgustavosgobi/simpleServer/core/io/ExpandableBuffer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/main/java/br/com/luizgustavosgobi/simpleServer/core/io/SocketStream.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/main/java/br/com/luizgustavosgobi/simpleServer/core/ports/ServerPort.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/main/java/br/com/luizgustavosgobi/simpleServer/core/scanner/AnnotationProcessorScanner.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/main/java/br/com/luizgustavosgobi/simpleServer/core/scanner/AnnotationScanner.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/main/java/br/com/luizgustavosgobi/simpleServer/core/scanner/ScannerProvider.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/ARCHITECTURE_DIAGRAMS.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/http/build.gradle.kts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/http/src/main/java/br/com/luizgustavosgobi/simpleserver/http/HttpConnectionHandlerPort.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/br/com/luizgustavosgobi/testes/ConnHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/br/com/luizgustavosgobi/testes/Main.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/br/com/luizgustavosgobi/testes/MainController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/br/com/luizgustavosgobi/testes/MainService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/server_properties.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/server_properties.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/settings.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/luizgustavosgobi/simpleServer/core/beans/AnnotationManager.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/luizgustavosgobi/simpleServer/core/beans/annotations/AutoWired.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/luizgustavosgobi/simpleServer/core/beans/annotations/Bean.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/luizgustavosgobi/simpleServer/core/beans/annotations/Configuration.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/luizgustavosgobi/simpleServer/core/beans/processor/AnnotationProcessor.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/luizgustavosgobi/simpleServer/core/beans/scanner/AnnotationProcessorScanner.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/luizgustavosgobi/simpleServer/core/beans/scanner/ClassScanner.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/luizgustavosgobi/simpleServer/core/configuration/ConfigurationManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/br/com/luizgustavosgobi/simpleServer/core/configuration/ConfigurationManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/luizgustavosgobi/simpleServer/core/connection/ConnectionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/br/com/luizgustavosgobi/simpleServer/core/connection/ConnectionHandlerPort.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/luizgustavosgobi/simpleServer/core/connection/ConnectionTable.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/br/com/luizgustavosgobi/simpleServer/core/connection/ConnectionTablePort.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/luizgustavosgobi/simpleServer/core/connection/DefaultConnectionTable.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/luizgustavosgobi/simpleServer/core/context/ApplicationContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/br/com/luizgustavosgobi/simpleServer/core/context/ApplicationContext.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/luizgustavosgobi/simpleServer/core/context/ContextHolder.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/luizgustavosgobi/simpleServer/core/executors/ThreadManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/br/com/luizgustavosgobi/simpleServer/core/executors/ThreadManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/luizgustavosgobi/simpleServer/core/server/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/br/com/luizgustavosgobi/simpleServer/core/Server.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/luizgustavosgobi/simpleServer/core/server/ServerFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/br/com/luizgustavosgobi/simpleServer/core/ServerFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/luizgustavosgobi/simpleServer/exceptions/GenericServerException.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/br/com/luizgustavosgobi/simpleServer/core/exceptions/GenericServerException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/luizgustavosgobi/simpleServer/exceptions/TypeMismatchException.java" beforeDir="false" afterPath="$PROJECT_DIR$/http/src/main/java/br/com/luizgustavosgobi/simpleserver/http/exceptions/TypeMismatchException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/luizgustavosgobi/simpleServer/http/HttpApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/http/src/main/java/br/com/luizgustavosgobi/simpleserver/http/HttpApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/luizgustavosgobi/simpleServer/http/HttpConnectionHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/luizgustavosgobi/simpleServer/http/annotations/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/http/src/main/java/br/com/luizgustavosgobi/simpleserver/http/annotations/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/luizgustavosgobi/simpleServer/http/annotations/GetMapping.java" beforeDir="false" afterPath="$PROJECT_DIR$/http/src/main/java/br/com/luizgustavosgobi/simpleserver/http/annotations/GetMapping.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/luizgustavosgobi/simpleServer/http/annotations/Middleware.java" beforeDir="false" afterPath="$PROJECT_DIR$/http/src/main/java/br/com/luizgustavosgobi/simpleserver/http/annotations/Middleware.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/luizgustavosgobi/simpleServer/http/annotations/ParametersType/PathVariable.java" beforeDir="false" afterPath="$PROJECT_DIR$/http/src/main/java/br/com/luizgustavosgobi/simpleserver/http/annotations/ParametersType/PathVariable.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/luizgustavosgobi/simpleServer/http/annotations/ParametersType/RequestBody.java" beforeDir="false" afterPath="$PROJECT_DIR$/http/src/main/java/br/com/luizgustavosgobi/simpleserver/http/annotations/ParametersType/RequestBody.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/luizgustavosgobi/simpleServer/http/annotations/ParametersType/RequestHeader.java" beforeDir="false" afterPath="$PROJECT_DIR$/http/src/main/java/br/com/luizgustavosgobi/simpleserver/http/annotations/ParametersType/RequestHeader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/luizgustavosgobi/simpleServer/http/annotations/ParametersType/RequestParam.java" beforeDir="false" afterPath="$PROJECT_DIR$/http/src/main/java/br/com/luizgustavosgobi/simpleserver/http/annotations/ParametersType/RequestParam.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/luizgustavosgobi/simpleServer/http/annotations/PostMapping.java" beforeDir="false" afterPath="$PROJECT_DIR$/http/src/main/java/br/com/luizgustavosgobi/simpleserver/http/annotations/PostMapping.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/luizgustavosgobi/simpleServer/http/annotations/RequestMapping.java" beforeDir="false" afterPath="$PROJECT_DIR$/http/src/main/java/br/com/luizgustavosgobi/simpleserver/http/annotations/RequestMapping.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/luizgustavosgobi/simpleServer/http/entities/HttpEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/http/src/main/java/br/com/luizgustavosgobi/simpleserver/http/entities/HttpEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/luizgustavosgobi/simpleServer/http/entities/RequestEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/http/src/main/java/br/com/luizgustavosgobi/simpleserver/http/entities/RequestEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/luizgustavosgobi/simpleServer/http/entities/ResponseEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/http/src/main/java/br/com/luizgustavosgobi/simpleserver/http/entities/ResponseEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/luizgustavosgobi/simpleServer/http/enums/HttpMethod.java" beforeDir="false" afterPath="$PROJECT_DIR$/http/src/main/java/br/com/luizgustavosgobi/simpleserver/http/enums/HttpMethod.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/luizgustavosgobi/simpleServer/http/enums/HttpStatus.java" beforeDir="false" afterPath="$PROJECT_DIR$/http/src/main/java/br/com/luizgustavosgobi/simpleserver/http/enums/HttpStatus.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/luizgustavosgobi/simpleServer/http/exceptions/HttpException.java" beforeDir="false" afterPath="$PROJECT_DIR$/http/src/main/java/br/com/luizgustavosgobi/simpleserver/http/exceptions/HttpException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/luizgustavosgobi/simpleServer/http/exceptions/InternalServerErrorException.java" beforeDir="false" afterPath="$PROJECT_DIR$/http/src/main/java/br/com/luizgustavosgobi/simpleserver/http/exceptions/InternalServerErrorException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/luizgustavosgobi/simpleServer/http/exceptions/InvalidHttpRequestException.java" beforeDir="false" afterPath="$PROJECT_DIR$/http/src/main/java/br/com/luizgustavosgobi/simpleserver/http/exceptions/InvalidHttpRequestException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/luizgustavosgobi/simpleServer/http/exceptions/InvalidJsonException.java" beforeDir="false" afterPath="$PROJECT_DIR$/http/src/main/java/br/com/luizgustavosgobi/simpleserver/http/exceptions/InvalidJsonException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/luizgustavosgobi/simpleServer/http/exceptions/MalFormedRequestDataException.java" beforeDir="false" afterPath="$PROJECT_DIR$/http/src/main/java/br/com/luizgustavosgobi/simpleserver/http/exceptions/MalFormedRequestDataException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/luizgustavosgobi/simpleServer/http/exceptions/NotFoundHttpException.java" beforeDir="false" afterPath="$PROJECT_DIR$/http/src/main/java/br/com/luizgustavosgobi/simpleserver/http/exceptions/NotFoundHttpException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/luizgustavosgobi/simpleServer/http/parser/HttpContentParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/http/src/main/java/br/com/luizgustavosgobi/simpleserver/http/parser/HttpContentParser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/luizgustavosgobi/simpleServer/http/parser/HttpParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/http/src/main/java/br/com/luizgustavosgobi/simpleserver/http/parser/HttpParser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/luizgustavosgobi/simpleServer/http/parser/components/HttpHeaders.java" beforeDir="false" afterPath="$PROJECT_DIR$/http/src/main/java/br/com/luizgustavosgobi/simpleserver/http/parser/components/HttpHeaders.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/luizgustavosgobi/simpleServer/http/parser/components/HttpLine.java" beforeDir="false" afterPath="$PROJECT_DIR$/http/src/main/java/br/com/luizgustavosgobi/simpleserver/http/parser/components/HttpLine.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/luizgustavosgobi/simpleServer/http/parser/components/HttpRequestLine.java" beforeDir="false" afterPath="$PROJECT_DIR$/http/src/main/java/br/com/luizgustavosgobi/simpleserver/http/parser/components/HttpRequestLine.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/luizgustavosgobi/simpleServer/http/parser/components/HttpResponseLine.java" beforeDir="false" afterPath="$PROJECT_DIR$/http/src/main/java/br/com/luizgustavosgobi/simpleserver/http/parser/components/HttpResponseLine.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/luizgustavosgobi/simpleServer/http/parser/components/URI.java" beforeDir="false" afterPath="$PROJECT_DIR$/http/src/main/java/br/com/luizgustavosgobi/simpleserver/http/parser/components/URI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/luizgustavosgobi/simpleServer/http/parser/handlers/MultipartFormDataHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/http/src/main/java/br/com/luizgustavosgobi/simpleserver/http/parser/handlers/MultipartFormDataHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/luizgustavosgobi/simpleServer/http/router/MiddlewareHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/http/src/main/java/br/com/luizgustavosgobi/simpleserver/http/router/MiddlewareHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/luizgustavosgobi/simpleServer/http/router/RouteHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/http/src/main/java/br/com/luizgustavosgobi/simpleserver/http/router/RouteHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/luizgustavosgobi/simpleServer/http/router/Router.java" beforeDir="false" afterPath="$PROJECT_DIR$/http/src/main/java/br/com/luizgustavosgobi/simpleserver/http/router/Router.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/luizgustavosgobi/simpleServer/http/types/BodyData.java" beforeDir="false" afterPath="$PROJECT_DIR$/http/src/main/java/br/com/luizgustavosgobi/simpleserver/http/types/BodyData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/luizgustavosgobi/simpleServer/http/types/File.java" beforeDir="false" afterPath="$PROJECT_DIR$/http/src/main/java/br/com/luizgustavosgobi/simpleserver/http/types/File.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/luizgustavosgobi/simpleServer/http/types/FormData.java" beforeDir="false" afterPath="$PROJECT_DIR$/http/src/main/java/br/com/luizgustavosgobi/simpleserver/http/types/FormData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/luizgustavosgobi/simpleServer/http/types/Json.java" beforeDir="false" afterPath="$PROJECT_DIR$/http/src/main/java/br/com/luizgustavosgobi/simpleserver/http/types/Json.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/luizgustavosgobi/simpleServer/http/utils/ConnectionUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/http/src/main/java/br/com/luizgustavosgobi/simpleserver/http/utils/ConnectionUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/luizgustavosgobi/simpleServer/logger/Logger.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/br/com/luizgustavosgobi/simpleServer/core/logger/Logger.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/luizgustavosgobi/simpleServer/logger/enums/Colors.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/br/com/luizgustavosgobi/simpleServer/core/logger/enums/Colors.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/luizgustavosgobi/simpleServer/logger/enums/LogTypes.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/br/com/luizgustavosgobi/simpleServer/core/logger/enums/LogTypes.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/luizgustavosgobi/simpleServer/utils/DataUtils.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/test/A/As.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/test/A/Config.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/test/A/HelloService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/test/A/MyController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/test/A/SecondController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/test/HiDto.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/test/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/test/TestConnectionHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/server.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/server.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -98,8 +124,16 @@
   <component name="CodeInsightWorkspaceSettings">
     <option name="optimizeImportsOnTheFly" value="true" />
   </component>
+  <component name="CopilotPersistence">
+    <persistenceIdMap>
+      <entry key="_C:/Users/luizg/Documents/Github/Simple-Server" value="2vT0EaOpdyyFfChihBKmRdfw3ux" />
+    </persistenceIdMap>
+  </component>
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+    <projectState path="$PROJECT_DIR$/SimpleServer.core">
       <ProjectState />
     </projectState>
   </component>
@@ -149,20 +183,33 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Enum" />
-        <option value="Exception" />
-        <option value="Interface" />
-        <option value="Record" />
-        <option value="Class" />
         <option value="AnnotationType" />
+        <option value="Enum" />
+        <option value="Record" />
+        <option value="Interface" />
+        <option value="Exception" />
+        <option value="Class" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;luizgustavosgobi&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/luizgustavosgobi/Simple-Server.git&quot;,
+    &quot;accountId&quot;: &quot;d60e51eb-d778-4599-9f7c-320e6452083d&quot;
+  }
+}</component>
+  <component name="GradleScriptDefinitionsStorage" workingDir="$PROJECT_DIR$" gradleHome="C:\Users\luizg\.gradle\wrapper\dists\gradle-8.10-bin\deqhafrv1ntovfmgh0nh3npr9\gradle-8.10" javaHome="C:\Users\luizg\.jdks\graalvm-ce-23.0.2" gradleVersion="8.10" />
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/src/main/java/br/com/luizgustavosgobi/simpleServer/core/context/ApplicationContext.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/core/src/main/java/br/com/luizgustavosgobi/simpleServer/core/context/ApplicationContext.java" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="KotlinCodeInsightWorkspaceSettings">
     <option name="optimizeImportsOnTheFly" value="true" />
@@ -181,73 +228,76 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.Main.executor&quot;: &quot;Profiler#4&quot;,
-    &quot;Application.test.Main.executor&quot;: &quot;Profiler#1&quot;,
-    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
-    &quot;Gradle.Build SimpleServer.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.Download Sources.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.SimpleServer [:br.com.luizgustavosgobi.simpleServer.Main.main()].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.SimpleServer [:test.Main.main()].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.SimpleServer [:test.MyServer.main()].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.SimpleServer [assemble].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.SimpleServer [build].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.SimpleServer [check].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.SimpleServer [classes].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.SimpleServer [clean].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.SimpleServer [init].executor&quot;: &quot;Run&quot;,
-    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Main.executor": "Profiler#4",
+    "Application.test.Main.executor": "Profiler#1",
+    "Downloaded.Files.Path.Enabled": "false",
+    "Gradle.Build Simple-Server.executor": "Run",
+    "Gradle.Build SimpleServer.executor": "Run",
+    "Gradle.Download Sources.executor": "Run",
+    "Gradle.Simple-Server [:br.com.luizgustavosgobi.testes.Main.main()].executor": "Run",
+    "Gradle.SimpleServer [:br.com.luizgustavosgobi.simpleServer.Main.main()].executor": "Run",
+    "Gradle.SimpleServer [:test.Main.main()].executor": "Run",
+    "Gradle.SimpleServer [:test.MyServer.main()].executor": "Run",
+    "Gradle.SimpleServer [assemble].executor": "Run",
+    "Gradle.SimpleServer [build].executor": "Run",
+    "Gradle.SimpleServer [check].executor": "Run",
+    "Gradle.SimpleServer [classes].executor": "Run",
+    "Gradle.SimpleServer [clean].executor": "Run",
+    "Gradle.SimpleServer [init].executor": "Run",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
+    "git-widget-placeholder": "main",
+    "junie.onboarding.icon.badge.shown": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/luizg/Documents/Github/Simple-Server",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "onboarding.tips.debug.path": "C:/Users/luizg/Documents/Github/Simple-Server/http/src/main/java/br/com/luizgustavosgobi/simpleServer/Main.java",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.33165407",
+    "settings.editor.selected.configurable": "editor.preferences.import",
+    "to.speed.mode.migration.done": "true",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\luizg\Documents\Github\Simple-Server\http" />
       <recent name="C:\Users\luizg\Documents\Codes\SimpleServer\src\main\java\br\com\luizgustavosgobi\simpleServer" />
       <recent name="C:\Users\luizg\Documents\Codes\SimpleServer\src\main" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="" />
     </key>
+    <key name="K2MoveDeclarationsDialog.RECENT_PACKAGE_KEY">
+      <recent name="br.com.luizgustavosgobi.simpleServer" />
+    </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="br.com.luizgustavosgobi.simpleServer.logger.enums" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Teste">
-    <configuration name="Teste" type="Application" factoryName="Application" temporary="true">
-      <option name="MAIN_CLASS_NAME" value="test.Main" />
+  <component name="RunManager" selected="Application.Main">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="br.com.luizgustavosgobi.testes.Main" />
       <module name="SimpleServer.main" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="test.*" />
+          <option name="PATTERN" value="br.com.luizgustavosgobi.testes.*" />
           <option name="ENABLED" value="true" />
         </pattern>
-      </extension>
-      <extension name="net.ashald.envfile">
-        <option name="IS_ENABLED" value="false" />
-        <option name="IS_SUBST" value="false" />
-        <option name="IS_PATH_MACRO_SUPPORTED" value="false" />
-        <option name="IS_IGNORE_MISSING_FILES" value="false" />
-        <option name="IS_ENABLE_EXPERIMENTAL_INTEGRATIONS" value="false" />
-        <ENTRIES>
-          <ENTRY IS_ENABLED="true" PARSER="runconfig" IS_EXECUTABLE="false" />
-        </ENTRIES>
       </extension>
       <method v="2">
         <option name="Make" enabled="true" />
@@ -294,8 +344,11 @@
       </ExternalSystemSettings>
       <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
       <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <ExternalSystemDebugDisabled>false</ExternalSystemDebugDisabled>
       <DebugAllEnabled>false</DebugAllEnabled>
       <RunAsTest>false</RunAsTest>
+      <GradleProfilingDisabled>false</GradleProfilingDisabled>
+      <GradleCoverageDisabled>false</GradleCoverageDisabled>
       <method v="2" />
     </configuration>
     <configuration name="SimpleServer [assemble]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
@@ -338,8 +391,11 @@
       </ExternalSystemSettings>
       <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
       <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <ExternalSystemDebugDisabled>false</ExternalSystemDebugDisabled>
       <DebugAllEnabled>false</DebugAllEnabled>
       <RunAsTest>false</RunAsTest>
+      <GradleProfilingDisabled>false</GradleProfilingDisabled>
+      <GradleCoverageDisabled>false</GradleCoverageDisabled>
       <method v="2" />
     </configuration>
     <configuration name="SimpleServer [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
@@ -382,8 +438,11 @@
       </ExternalSystemSettings>
       <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
       <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <ExternalSystemDebugDisabled>false</ExternalSystemDebugDisabled>
       <DebugAllEnabled>false</DebugAllEnabled>
       <RunAsTest>false</RunAsTest>
+      <GradleProfilingDisabled>false</GradleProfilingDisabled>
+      <GradleCoverageDisabled>false</GradleCoverageDisabled>
       <method v="2" />
     </configuration>
     <configuration name="SimpleServer [clean]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
@@ -406,28 +465,34 @@
       <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
       <DebugAllEnabled>false</DebugAllEnabled>
       <RunAsTest>false</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="SimpleServer.core" />
+      <option name="filePath" />
       <method v="2" />
     </configuration>
     <list>
       <item itemvalue="Application.Teste" />
+      <item itemvalue="Application.Main" />
       <item itemvalue="Gradle.SimpleServer [assemble]" />
       <item itemvalue="Gradle.SimpleServer [build]" />
       <item itemvalue="Gradle.SimpleServer [clean]" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Main" />
         <item itemvalue="Gradle.SimpleServer [clean]" />
         <item itemvalue="Gradle.SimpleServer [build]" />
         <item itemvalue="Gradle.SimpleServer [assemble]" />
-        <item itemvalue="Application.Teste" />
       </list>
     </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9823dce3aa75-fbdcb00ec9e3-intellij.indexing.shared.core-IU-251.26927.53" />
-        <option value="bundled-js-predefined-d6986cc7102b-09060db00ec0-JavaScript-IU-251.26927.53" />
+        <option value="bundled-jdk-30f59d01ecdd-2fc7cc6b9a17-intellij.indexing.shared.core-IU-253.30387.90" />
+        <option value="bundled-js-predefined-d6986cc7102b-9b0f141eb926-JavaScript-IU-253.30387.90" />
       </set>
     </attachedChunks>
   </component>
@@ -509,6 +574,20 @@
       <workItem from="1753040893563" duration="6181000" />
       <workItem from="1753055070593" duration="17289000" />
       <workItem from="1753072926487" duration="1028000" />
+      <workItem from="1760821134330" duration="564000" />
+      <workItem from="1760842069657" duration="1912000" />
+      <workItem from="1760879840552" duration="15616000" />
+      <workItem from="1760922482788" duration="2464000" />
+      <workItem from="1761008007312" duration="10000" />
+      <workItem from="1769472254873" duration="368000" />
+      <workItem from="1769790277281" duration="391000" />
+      <workItem from="1769790687255" duration="884000" />
+      <workItem from="1769886253647" duration="1434000" />
+      <workItem from="1769950011321" duration="24729000" />
+      <workItem from="1769985844663" duration="804000" />
+      <workItem from="1770039382848" duration="3736000" />
+      <workItem from="1770124734835" duration="48000" />
+      <workItem from="1770124798996" duration="35904000" />
     </task>
     <servers />
   </component>
@@ -526,5 +605,13 @@
     <SUITE FILE_PATH="coverage/SimpleServer$Main.ic" NAME="Main Coverage Results" MODIFIED="1744922315921" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
       <FILTER>test.*</FILTER>
     </SUITE>
+  </component>
+  <component name="github-copilot-workspace">
+    <instructionFileLocations>
+      <option value=".github/instructions" />
+    </instructionFileLocations>
+    <promptFileLocations>
+      <option value=".github/prompts" />
+    </promptFileLocations>
   </component>
 </project>
