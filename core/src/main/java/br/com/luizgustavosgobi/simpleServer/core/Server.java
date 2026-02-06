@@ -1,12 +1,16 @@
 package br.com.luizgustavosgobi.simpleServer.core;
 
-import br.com.luizgustavosgobi.simpleServer.core.connection.ConnectionHandlerPort;
-import br.com.luizgustavosgobi.simpleServer.core.connection.ConnectionTablePort;
+import br.com.luizgustavosgobi.simpleServer.core.connection.Client;
+import br.com.luizgustavosgobi.simpleServer.core.connection.ConnectionHandler;
 import br.com.luizgustavosgobi.simpleServer.core.connection.ConnectionTable;
 import br.com.luizgustavosgobi.simpleServer.core.context.BeanRegistry;
+import br.com.luizgustavosgobi.simpleServer.core.converter.DataPipeline;
 import br.com.luizgustavosgobi.simpleServer.core.handlers.AcceptEventHandler;
 import br.com.luizgustavosgobi.simpleServer.core.handlers.CloseEventHandler;
 import br.com.luizgustavosgobi.simpleServer.core.handlers.ReadEventHandler;
+import br.com.luizgustavosgobi.simpleServer.core.handlers.WriteEventHandler;
+import br.com.luizgustavosgobi.simpleServer.core.io.SelectorScheduler;
+import br.com.luizgustavosgobi.simpleServer.core.io.SocketStream;
 import br.com.luizgustavosgobi.simpleServer.core.logger.Logger;
 
 import java.io.IOException;
@@ -14,13 +18,14 @@ import java.net.InetSocketAddress;
 import java.nio.channels.SelectionKey;
 import java.nio.channels.Selector;
 import java.nio.channels.ServerSocketChannel;
+import java.nio.channels.SocketChannel;
 
 public class Server implements ServerPort {
     private final Selector selector;
     private final ServerSocketChannel serverChannel;
     private final ThreadManager threadManager;
-    private final ConnectionTablePort connectionTablePort;
-    private final ConnectionHandlerPort connectionHandlerPort;
+    private final ConnectionTable connectionTable;
+    private final ConnectionHandler connectionHandler;
     private final BeanRegistry context;
     private final Logger logger;
     private final boolean isBlockingIo;
@@ -29,24 +34,29 @@ public class Server implements ServerPort {
 
     private final AcceptEventHandler acceptHandler;
     private final ReadEventHandler readHandler;
+    private final WriteEventHandler writeHandler;
     private final CloseEventHandler closeHandler;
+
+    private final SocketStream socketStream;
+    private final DataPipeline dataPipeline;
+
+    private final SelectorScheduler selectorScheduler;
 
     private volatile boolean running = false;
 
-    // --------------------------------------------
-    // -----------     Constructors     -----------
-    // --------------------------------------------
 
-    public Server(int port, boolean blocking, ConnectionTablePort connectionTablePort, ConnectionHandlerPort connectionHandlerPort,
-                  ThreadManager threadManager, BeanRegistry context, Logger logger) throws IOException {
+    public Server(int port, boolean blocking, ConnectionTable connectionTable, ConnectionHandler connectionHandler,
+                  ThreadManager threadManager, BeanRegistry context, Logger logger, DataPipeline dataPipeline) throws IOException {
 
         this.port = port;
         this.isBlockingIo = blocking;
         this.threadManager = threadManager;
-        this.connectionTablePort = connectionTablePort;
-        this.connectionHandlerPort = connectionHandlerPort;
+        this.connectionTable = connectionTable;
+        this.connectionHandler = connectionHandler;
         this.context = context;
         this.logger = logger;
+        this.dataPipeline = dataPipeline;
+        this.socketStream = new SocketStream(dataPipeline);
 
         this.serverChannel = ServerSocketChannel.open();
         serverChannel.bind(new InetSocketAddress(port));
@@ -55,23 +65,18 @@ public class Server implements ServerPort {
         this.selector = Selector.open();
         serverChannel.register(selector, SelectionKey.OP_ACCEPT);
 
-        this.acceptHandler = new AcceptEventHandler(connectionTablePort, connectionHandlerPort, threadManager, isBlockingIo);
-        this.readHandler = new ReadEventHandler(connectionHandlerPort, threadManager);
-        this.closeHandler = new CloseEventHandler(connectionTablePort, connectionHandlerPort, threadManager);
+        this.selectorScheduler = new SelectorScheduler(selector);
+
+        this.acceptHandler = new AcceptEventHandler(connectionTable, connectionHandler, threadManager, selector, isBlockingIo, selectorScheduler);
+        this.readHandler = new ReadEventHandler(connectionHandler, threadManager, socketStream);
+        this.writeHandler = new WriteEventHandler(connectionHandler, threadManager, socketStream, selectorScheduler);
+        this.closeHandler = new CloseEventHandler(connectionTable, connectionHandler, threadManager);
     }
 
-    public Server(int port, boolean blocking, ConnectionTablePort connectionTablePort, ConnectionHandlerPort connectionHandlerPort,
-                  BeanRegistry context, Logger logger) throws IOException {
+    public Server(int port, boolean blocking, ConnectionTable connectionTable, ConnectionHandler connectionHandler,
+                  BeanRegistry context, Logger logger, DataPipeline dataPipeline) throws IOException {
 
-        this(port, blocking, connectionTablePort, connectionHandlerPort, new ThreadManager(), context, logger);
-    }
-
-    public Server(int port, boolean blocking, ConnectionHandlerPort connHandler) throws IOException {
-        this(port, blocking, new ConnectionTable(), connHandler, new ThreadManager(), null, null);
-    }
-
-    public Server(int port, ConnectionHandlerPort connHandler) throws IOException {
-        this(port, false, connHandler);
+        this(port, blocking, connectionTable, connectionHandler, new ThreadManager(), context, logger, dataPipeline);
     }
 
 
@@ -91,19 +96,37 @@ public class Server implements ServerPort {
 
                     for (SelectionKey key : selector.selectedKeys()) {
                         try {
-                            if (key.isAcceptable()) acceptHandler.handle(key, selector);
+                            if (key.isAcceptable()) {
+                                ServerSocketChannel serverChannel = (ServerSocketChannel) key.channel();
+                                SocketChannel clientChannel = serverChannel.accept();
 
-                            else if (key.isReadable()) {
-                                boolean shouldKeepOpen = readHandler.handle(key);
+                                Client client = new Client(clientChannel, selectorScheduler);
+
+                                acceptHandler.handle(client);
+                                continue;
+                            }
+
+                            SocketChannel channel = (SocketChannel) key.channel();
+                            Client client = connectionTable.get((InetSocketAddress) channel.getRemoteAddress());
+                            if (client == null)
+                                throw new IllegalArgumentException("Event disparate on an unregistered client");
+
+                            if (key.isReadable()) {
+                                boolean shouldKeepOpen = readHandler.handle(client);
                                 if (!shouldKeepOpen) key.cancel();
                             }
 
-                            if (!key.isValid()) closeHandler.handle(key);
-                        } catch (IOException e) {
+                            else if (key.isWritable()) writeHandler.handle(client);
+
+                            if (!key.isValid()) closeHandler.handle(client);
+                        } catch (Exception e) {
                             logger.error("Error handling event: " + e.getMessage());
 
                             if (key.isValid()) {
-                                closeHandler.handle(key);
+                                SocketChannel channel = (SocketChannel) key.channel();
+                                Client client = connectionTable.get((InetSocketAddress) channel.getRemoteAddress());
+
+                                closeHandler.handle(client);
                             }
                         }
                     }
@@ -130,7 +153,6 @@ public class Server implements ServerPort {
         logger.info("Server closed");
     }
 
-
     @Override
     public boolean isRunning() {
         return running && serverChannel.isOpen();
@@ -155,13 +177,13 @@ public class Server implements ServerPort {
     }
 
     @Override
-    public ConnectionTablePort getConnectionTable() {
-        return connectionTablePort;
+    public ConnectionTable getConnectionTable() {
+        return connectionTable;
     }
 
     @Override
-    public ConnectionHandlerPort getConnectionHandler() {
-        return connectionHandlerPort;
+    public ConnectionHandler getConnectionHandler() {
+        return connectionHandler;
     }
 
     @Override

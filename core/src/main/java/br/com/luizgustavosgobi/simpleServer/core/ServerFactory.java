@@ -2,10 +2,11 @@ package br.com.luizgustavosgobi.simpleServer.core;
 
 import br.com.luizgustavosgobi.simpleServer.core.configuration.ConfigurationManager;
 import br.com.luizgustavosgobi.simpleServer.core.configuration.ServerConfiguration;
-import br.com.luizgustavosgobi.simpleServer.core.connection.ConnectionHandlerPort;
-import br.com.luizgustavosgobi.simpleServer.core.connection.ConnectionTablePort;
+import br.com.luizgustavosgobi.simpleServer.core.connection.ConnectionHandler;
 import br.com.luizgustavosgobi.simpleServer.core.connection.ConnectionTable;
+import br.com.luizgustavosgobi.simpleServer.core.connection.ClientConnectionTable;
 import br.com.luizgustavosgobi.simpleServer.core.context.*;
+import br.com.luizgustavosgobi.simpleServer.core.converter.DataPipeline;
 import br.com.luizgustavosgobi.simpleServer.core.logger.Logger;
 
 import java.io.IOException;
@@ -15,7 +16,7 @@ public class ServerFactory {
     private static final ServerRegistry serverRegistry = ServerRegistry.getInstance();
 
 
-    public static Server create(Class<?> mainClass, Integer port, ConnectionHandlerPort connectionHandlerPort, BeanRegistry externalBeanRegistry) throws IOException {
+    public static Server create(Class<?> mainClass, Integer port, ConnectionHandler connectionHandler, BeanRegistry externalBeanRegistry, DataPipeline dataPipeline) throws IOException {
         Logger logger = new Logger(mainClass.getSimpleName());
 
         int serverIndex = serverRegistry.getNextServerIndex();
@@ -25,19 +26,20 @@ public class ServerFactory {
         BeanRegistry applicationContext = bootstrap.getBeanRegistry();
 
         ThreadManager threadManager = new ThreadManager();
-        ConnectionTablePort connectionTable = new ConnectionTable();
+        ConnectionTable connectionTable = new ClientConnectionTable();
 
         applicationContext.register(new BeanDefinition("THREAD_MANAGER", ThreadManager.class, BeanScope.SINGLETON, false, threadManager));
-        applicationContext.register(new BeanDefinition("CONNECTION_TABLE", ConnectionTablePort.class, BeanScope.SINGLETON, false, connectionTable));
+        applicationContext.register(new BeanDefinition("CONNECTION_TABLE", ConnectionTable.class, BeanScope.SINGLETON, false, connectionTable));
 
         Server server = new Server(
                 config.getPort(),
                 config.isBlocking(),
                 connectionTable,
-                connectionHandlerPort,
+                connectionHandler,
                 threadManager,
                 applicationContext,
-                logger
+                logger,
+                dataPipeline
         );
 
         applicationContext.register(new BeanDefinition("SERVER", Server.class, BeanScope.SINGLETON, false, server));
@@ -49,11 +51,11 @@ public class ServerFactory {
         return server;
     }
 
-    public static Server create(Class<?> mainClass, Integer port, ConnectionHandlerPort connectionHandlerPort) throws IOException {
-        return create(mainClass, port, connectionHandlerPort, new ApplicationContext());
+    public static Server create(Class<?> mainClass, Integer port, ConnectionHandler connectionHandler, DataPipeline dataPipeline) throws IOException {
+        return create(mainClass, port, connectionHandler, new ApplicationContext(), dataPipeline);
     }
 
-    public static Server create(Class<?> mainClass, ConnectionHandlerPort connectionHandlerPort) throws IOException {
-        return create(mainClass, null, connectionHandlerPort);
+    public static Server create(Class<?> mainClass, ConnectionHandler connectionHandler) throws IOException {
+        return create(mainClass, null, connectionHandler, new DataPipeline());
     }
 }

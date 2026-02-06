@@ -1,31 +1,29 @@
 package br.com.luizgustavosgobi.simpleServer.core.handlers;
 
-import br.com.luizgustavosgobi.simpleServer.core.connection.ConnectionHandlerPort;
 import br.com.luizgustavosgobi.simpleServer.core.ThreadManager;
+import br.com.luizgustavosgobi.simpleServer.core.connection.Client;
+import br.com.luizgustavosgobi.simpleServer.core.connection.ConnectionHandler;
 import br.com.luizgustavosgobi.simpleServer.core.io.SocketStream;
 import br.com.luizgustavosgobi.simpleServer.core.logger.Logger;
 
-import java.io.IOException;
-import java.nio.channels.SelectionKey;
-import java.nio.channels.SocketChannel;
-
 public class ReadEventHandler {
-    private final ConnectionHandlerPort connectionHandlerPort;
+    private final ConnectionHandler connectionHandler;
     private final ThreadManager threadManager;
+    private final SocketStream socketStream;
 
-    public ReadEventHandler(ConnectionHandlerPort connectionHandlerPort, ThreadManager threadManager) {
-        this.connectionHandlerPort = connectionHandlerPort;
+    public ReadEventHandler(ConnectionHandler connectionHandler, ThreadManager threadManager, SocketStream socketStream) {
+        this.connectionHandler = connectionHandler;
         this.threadManager = threadManager;
+        this.socketStream = socketStream;
     }
 
-    public boolean handle(SelectionKey key) {
-        SocketChannel client = (SocketChannel) key.channel();
+    public boolean handle(Client client) {
         try {
-            byte[] data = SocketStream.read(client);
+            Object data = socketStream.read(client.getChannel(), client.getDataPipelineContext());
 
-            threadManager.submitToIO(() -> connectionHandlerPort.onRead(client, data));
-        } catch (IOException e) {
-            Logger.Debug(ReadEventHandler.class, "Client closed connection: " + client.socket().getRemoteSocketAddress());
+            threadManager.submitToIO(() -> connectionHandler.onRead(client, data));
+        } catch (Exception e) {
+            Logger.Debug("Client closed connection: " + client.getAddress());
             return false;
         }
 

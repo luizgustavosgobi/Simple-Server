@@ -1,7 +1,8 @@
 package br.com.luizgustavosgobi.simpleServer.http;
 
-import br.com.luizgustavosgobi.simpleServer.core.connection.ConnectionHandlerPort;
-import br.com.luizgustavosgobi.simpleServer.core.connection.ConnectionTablePort;
+import br.com.luizgustavosgobi.simpleServer.core.connection.Client;
+import br.com.luizgustavosgobi.simpleServer.core.connection.ConnectionHandler;
+import br.com.luizgustavosgobi.simpleServer.core.connection.ConnectionTable;
 import br.com.luizgustavosgobi.simpleServer.http.entities.RequestEntity;
 import br.com.luizgustavosgobi.simpleServer.http.entities.ResponseEntity;
 import br.com.luizgustavosgobi.simpleServer.http.exceptions.HttpException;
@@ -16,34 +17,28 @@ import br.com.luizgustavosgobi.simpleServer.core.logger.Logger;
 
 import java.nio.channels.SocketChannel;
 
-public class HttpConnectionHandlerPort implements ConnectionHandlerPort {
+public class HttpConnectionHandler implements ConnectionHandler {
     private final Router router;
     private final ConnectionUtils connectionUtils;
-    private ConnectionTablePort connectionTablePort;
+    private ConnectionTable connectionTable;
 
-    public HttpConnectionHandlerPort(Router router) {
+    public HttpConnectionHandler(Router router) {
         this.router = router;
         this.connectionUtils = new ConnectionUtils();
     }
 
-    /**
-     * Define a ConnectionTablePort após a criação.
-     * Necessário porque o ConnectionTablePort só está disponível após o servidor ser criado.
-     *
-     * @param connectionTablePort Tabela de conexões do servidor
-     */
-    public void setConnectionTable(ConnectionTablePort connectionTablePort) {
-        this.connectionTablePort = connectionTablePort;
+    public void setConnectionTable(ConnectionTable connectionTable) {
+        this.connectionTable = connectionTable;
     }
 
     @Override
-    public void onAccept(SocketChannel client) {}
+    public void onAccept(Client client) {}
 
     @Override
-    public void onClose(SocketChannel client) {}
+    public void onClose(Client client) {}
 
     @Override
-    public void onRead(SocketChannel client, byte[] data) {
+    public void onRead(Client client, byte[] data) {
         RequestEntity<?> request;
         ResponseEntity<?> response;
         try { request = HttpParser.parse(data); }
@@ -74,10 +69,10 @@ public class HttpConnectionHandlerPort implements ConnectionHandlerPort {
     }
 
     private void sendAndDisconnect(SocketChannel client, ResponseEntity<?> response) {
-        if (connectionTablePort != null) {
-            connectionUtils.sendAndDisconnect(client, connectionTablePort, response);
+        if (connectionTable != null) {
+            connectionUtils.sendAndDisconnect(client, connectionTable, response);
         } else {
-            Logger.Error(HttpConnectionHandlerPort.class, "ConnectionTablePort not set, cannot disconnect client properly");
+            Logger.Error(HttpConnectionHandler.class, "ConnectionTable not set, cannot disconnect client properly");
         }
     }
 }

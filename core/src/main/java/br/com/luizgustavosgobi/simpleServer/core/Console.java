@@ -32,7 +32,7 @@ public class Console {
                 });
             } else if (line.equals("connections")) {
                 servers.forEach((name, server) -> {
-                    System.out.println(name);
+                    System.out.println("Server: " + name);
                     System.out.println(server.getConnectionTable().toString());
                 });
             } else if (line.equals("servers")) {

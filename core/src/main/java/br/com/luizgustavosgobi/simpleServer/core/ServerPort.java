@@ -1,7 +1,7 @@
 package br.com.luizgustavosgobi.simpleServer.core;
 
-import br.com.luizgustavosgobi.simpleServer.core.connection.ConnectionHandlerPort;
-import br.com.luizgustavosgobi.simpleServer.core.connection.ConnectionTablePort;
+import br.com.luizgustavosgobi.simpleServer.core.connection.ConnectionHandler;
+import br.com.luizgustavosgobi.simpleServer.core.connection.ConnectionTable;
 import br.com.luizgustavosgobi.simpleServer.core.context.BeanRegistry;
 
 import java.io.Closeable;
@@ -20,9 +20,9 @@ public interface ServerPort extends Closeable {
 
     ThreadManager getThreadManager();
 
-    ConnectionHandlerPort getConnectionHandler();
+    ConnectionHandler getConnectionHandler();
 
-    ConnectionTablePort getConnectionTable();
+    ConnectionTable getConnectionTable();
 
     BeanRegistry getContext();
 }

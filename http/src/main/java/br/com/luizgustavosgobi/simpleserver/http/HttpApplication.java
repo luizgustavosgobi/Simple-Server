@@ -27,7 +27,7 @@ public class HttpApplication {
         context.register(new BeanDefinition("OBJECT_VALIDATOR", Validator.class, BeanScope.SINGLETON, Validation.buildDefaultValidatorFactory().getValidator()));
 
         try {
-            HttpConnectionHandlerPort handler = new HttpConnectionHandlerPort(router);
+            HttpConnectionHandler handler = new HttpConnectionHandler(router);
 
             Server server = ServerFactory.create(mainClass, port, handler, context);
 
