@@ -19,7 +19,6 @@ public class AnnotationProcessor implements AnnotationProcessorPort {
         this.beanRegistry = beanRegistry;
     }
 
-
     public void processAnnotation(Annotation annotation, AnnotatedElement element) {
         Class<? extends Annotation> annotationType = annotation.annotationType();
 
@@ -30,8 +29,8 @@ public class AnnotationProcessor implements AnnotationProcessorPort {
                 processAnnotation(child, element);
         }
 
-        if (element instanceof Class<?> clazz)
-            Logger.Debug(clazz.getName());
+//        if (element instanceof Class<?> clazz)
+//            Logger.Debug(clazz.getName());
 
         AnnotationDefinition<?> processor = processors.getOrDefault(
                 annotation,
@@ -53,7 +52,7 @@ public class AnnotationProcessor implements AnnotationProcessorPort {
 
         for (AnnotationDto entry : annotations) {
             processors.computeIfAbsent(entry.annotation(), annotationRegistry::getProcessor);
-            annotationListMap.computeIfAbsent(entry.annotation(), k -> new ArrayList<>()).add(entry);
+            annotationListMap.computeIfAbsent(entry.annotation(), _ -> new ArrayList<>()).add(entry);
         }
 
         List<Map.Entry<Annotation, AnnotationDefinition<?>>> sortedProcessors = processors.entrySet().stream()

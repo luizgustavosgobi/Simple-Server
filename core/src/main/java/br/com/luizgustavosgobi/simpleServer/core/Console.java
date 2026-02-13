@@ -25,22 +25,22 @@ public class Console {
         while (servers.values().stream().anyMatch(server -> server.getServerChannel().isOpen())) {
             String line = sc.nextLine();
 
-            if (line.equals("close")) {
-                servers.values().forEach(server -> {
-                    try {server.close();}
-                    catch (IOException e) { throw new RuntimeException(e); }
+            switch (line) {
+                case "close" -> servers.values().forEach(server -> {
+                    try {
+                        server.close();
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
                 });
-            } else if (line.equals("connections")) {
-                servers.forEach((name, server) -> {
+                case "connections" -> servers.forEach((name, server) -> {
                     System.out.println("Server: " + name);
                     System.out.println(server.getConnectionTable().toString());
                 });
-            } else if (line.equals("servers")) {
-                servers.values().forEach(server -> {
+                case "servers" -> servers.values().forEach(server -> {
                     System.out.println(server.getServerChannel().socket().getInetAddress());
                 });
-            } else {
-                System.out.println("Unknown command: " + line);
+                default -> System.out.println("Unknown command: " + line);
             }
 
         }

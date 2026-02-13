@@ -9,6 +9,8 @@ public interface BeanRegistry {
     BeanDefinition getBean(String name);
     BeanDefinition getBean(Class<?> type);
 
+    <T> T getInstance(Class<?> type);
+
     boolean containsBean(String name);
     boolean containsBean(Class<?> type);
 

@@ -11,51 +11,38 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 
-public class ClassPathScanner implements Scanner<List<Class<?>>> {
+public class ClassPathScanner {
     private static final Map<String, List<Class<?>>> packageClassCache = new ConcurrentHashMap<>();
 
-    @Override
-    public List<Class<?>> scan(Object... args) {
-        List<String> knowPackages = new ArrayList<>();
-
-        if (args.length == 0)
-            throw new IllegalArgumentException("Class Scanner needs the base package argument!");
-
-        if (args[0] instanceof String basePackage)
-            knowPackages.add(basePackage);
-
-        if (args[0] instanceof String[] packages)
-            knowPackages.addAll(List.of(packages));
-
-        knowPackages.forEach(basePackage -> {
-            packageClassCache.computeIfAbsent(basePackage, pkg -> {
+    public List<Class<?>> scan(List<String> packages) {
+        for (String packageName : packages) {
+            packageClassCache.computeIfAbsent(packageName, pkg -> {
                 try {
                     List<Class<?>> classes = new ArrayList<>();
                     ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
 
-                    String path = basePackage.replace('.', '/');
+                    String path = packageName.replace('.', '/');
                     Enumeration<URL> resources = classLoader.getResources(path);
 
                     while (resources.hasMoreElements()) {
                         URL resource = resources.nextElement();
                         if ("jar".equals(resource.getProtocol())) {
-                            classes.addAll(findClassesInJar(resource, basePackage));
+                            classes.addAll(findClassesInJar(resource, packageName));
                         } else {
                             File directory = new File(resource.toURI());
                             if (directory.exists()) {
-                                classes.addAll(Objects.requireNonNull(findClassesInDirectory(directory, basePackage)));
+                                classes.addAll(Objects.requireNonNull(findClassesInDirectory(directory, packageName)));
                             }
                         }
                     }
 
                     return classes;
-                }
-                catch (Exception e) {
+                } catch (Exception e) {
                     Logger.Error(this, "Error searching for classes in package " + pkg + ": " + e.getMessage());
                     return new ArrayList<>();
                 }
             });
-        });
+        }
 
         return packageClassCache
                 .values()

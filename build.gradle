@@ -14,7 +14,7 @@ dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter'
 
     implementation(project(':core'))
-//    implementation(project(':http'))
+    implementation(project(':http'))
 }
 
 test {

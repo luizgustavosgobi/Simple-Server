@@ -1,7 +1,5 @@
 package br.com.luizgustavosgobi.simpleServer.core.annotation;
 
-import br.com.luizgustavosgobi.simpleServer.core.logger.Logger;
-
 import java.lang.annotation.Annotation;
 import java.util.List;
 import java.util.Map;
@@ -16,7 +14,7 @@ public class AnnotationContext implements AnnotationRegistry {
             throw new IllegalArgumentException("Annotation Processor cannot be null!");
 
         processors.put(processor.getAnnotationType(), processor);
-        Logger.Debug("Registered processor " + processor.getAnnotationType());
+        //Logger.Debug("Registered processor " + processor.getAnnotationType());
     }
 
     @Override

@@ -1,81 +1,93 @@
 package br.com.luizgustavosgobi.simpleServer.core.connection;
 
 import br.com.luizgustavosgobi.simpleServer.core.converter.DataPipelineContext;
-import br.com.luizgustavosgobi.simpleServer.core.io.WriteScheduler;
-import br.com.luizgustavosgobi.simpleServer.core.logger.Logger;
+import br.com.luizgustavosgobi.simpleServer.core.io.WriteQueue;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.nio.channels.SelectionKey;
 import java.nio.channels.SocketChannel;
-import java.util.concurrent.ConcurrentLinkedQueue;
-import java.util.concurrent.atomic.AtomicInteger;
 
-public class Client implements AutoCloseable {
-    private static final int MAX_PENDING_WRITES = 100;
-
+public class Client extends WriteQueue implements AutoCloseable {
     protected final SocketChannel channel;
     protected final InetSocketAddress address;
     protected final InetSocketAddress localAddress;
 
     protected final DataPipelineContext dataPipelineContext;
 
-    private final ConcurrentLinkedQueue<Object> writeQueue;
-    private final AtomicInteger pendingWrites;
-
     private SelectionKey selectionKey;
-    private WriteScheduler writeScheduler;
 
-    public Client(SocketChannel channel, WriteScheduler scheduler) throws IOException {
+    public Client(SocketChannel channel) throws IOException {
         this.channel = channel;
         this.address = (InetSocketAddress) channel.getRemoteAddress();
         this.localAddress = (InetSocketAddress) channel.getLocalAddress();
-        this.writeScheduler = scheduler;
 
         this.dataPipelineContext = new DataPipelineContext(channel);
-        this.writeQueue = new ConcurrentLinkedQueue<>();
-        this.pendingWrites = new AtomicInteger(0);
     }
 
     public boolean isConnected() {
         return channel.isConnected();
     }
 
+    @Override
     public boolean write(Object data) {
-        if (data == null) return false;
+        boolean result = super.write(data);
+        addKeyInterestIn(SelectionKey.OP_WRITE);
 
-        if (pendingWrites.get() >= MAX_PENDING_WRITES) {
-            Logger.Warn(Client.class, "Write queue full for " + address + ", dropping write event");
-            return false;
-        }
-
-        writeQueue.offer(data);
-        pendingWrites.incrementAndGet();
-
-        writeScheduler.scheduleWrite(this);
-
-        return true;
+        return result;
     }
 
-    public Object pollWrite() {
-        Object data = writeQueue.poll();
-
-        if (data != null)
-            pendingWrites.decrementAndGet();
-
-        return data;
+    public boolean shouldClose() {
+        Object shouldClose = dataPipelineContext.getAttribute("shouldClose");
+        if (shouldClose == null) return false;
+        return (boolean) shouldClose && !hasWrites();
+    }
+    public void shouldClose(boolean value) {
+        dataPipelineContext.setAttribute("shouldClose", value);
     }
 
-    public boolean hasWrites() {
-        return !writeQueue.isEmpty();
+    public SelectionKey getSelectionKey() {
+        return selectionKey;
+    }
+    public SocketChannel getChannel() {
+        return channel;
+    }
+    public InetSocketAddress getAddress() {
+        return address;
+    }
+    public InetSocketAddress getLocalAddress() {
+        return localAddress;
+    }
+    public DataPipelineContext getDataPipelineContext() {
+        return dataPipelineContext;
+    }
+
+    public void setAttribute(String name, Object value) {
+        dataPipelineContext.setAttribute(name, value);
+    }
+    public <T> T getAttribute(String name) {
+        return dataPipelineContext.getAttribute(name);
     }
 
     public void setSelectionKey(SelectionKey selectionKey) {
         this.selectionKey = selectionKey;
     }
+    public void addKeyInterestIn(int ops) {
+        selectionKey.interestOpsOr(ops);
+        selectionKey.selector().wakeup();
+    }
+    public void removeKeyInterestIn(int ops) {
+        selectionKey.interestOpsAnd(~ops);
+        selectionKey.selector().wakeup();
+    }
 
-    public SelectionKey getSelectionKey() {
-        return selectionKey;
+    @Override
+    public String toString() {
+        return "Client{" +
+                "channel=" + channel +
+                ", address=" + address +
+                ", localAddress=" + localAddress +
+                '}';
     }
 
     @Override
@@ -87,30 +99,5 @@ public class Client implements AutoCloseable {
         channel.shutdownOutput();
         channel.socket().close();
         channel.close();
-    }
-
-    public SocketChannel getChannel() {
-        return channel;
-    }
-
-    public InetSocketAddress getAddress() {
-        return address;
-    }
-
-    public InetSocketAddress getLocalAddress() {
-        return localAddress;
-    }
-
-    public DataPipelineContext getDataPipelineContext() {
-        return dataPipelineContext;
-    }
-
-    @Override
-    public String toString() {
-        return "Client{" +
-                "channel=" + channel +
-                ", address=" + address +
-                ", localAddress=" + localAddress +
-                '}';
     }
 }

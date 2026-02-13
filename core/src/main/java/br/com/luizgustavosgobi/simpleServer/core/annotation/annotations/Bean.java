@@ -5,7 +5,6 @@ import br.com.luizgustavosgobi.simpleServer.core.annotation.AnnotationPriority;
 import br.com.luizgustavosgobi.simpleServer.core.context.BeanDefinition;
 import br.com.luizgustavosgobi.simpleServer.core.context.BeanRegistry;
 import br.com.luizgustavosgobi.simpleServer.core.context.BeanScope;
-import br.com.luizgustavosgobi.simpleServer.core.logger.Logger;
 
 import java.lang.annotation.*;
 import java.lang.reflect.AnnotatedElement;
@@ -41,8 +40,6 @@ public @interface Bean {
 
                     BeanDefinition bean = new BeanDefinition(clazz.getName(), clazz, BeanScope.SINGLETON, instance);
                     applicationContext.register(bean);
-
-                    Logger.Debug("Bean Created: " + clazz.getName() + " - " + bean.getName());
                 }
 
                 case "Method" -> {
@@ -58,8 +55,6 @@ public @interface Bean {
 
                     BeanDefinition bean = new BeanDefinition(beanInstance.getClass().getName(), beanInstance.getClass(), BeanScope.SINGLETON, beanInstance);
                     applicationContext.register(bean);
-
-                    Logger.Debug("Bean Created: " + bean.getType() + " - " + bean.getName());
                 }
 
                 default -> throw new IllegalStateException("Unexpected value: " + element.getClass().getSimpleName());

@@ -1,13 +1,17 @@
 package br.com.luizgustavosgobi.simpleServer.http.parser.components;
 
-import lombok.Getter;
-import lombok.Setter;
-
 public abstract class HttpLine {
-    @Getter @Setter
     protected String version;
 
     public HttpLine(String version) {
+        this.version = version;
+    }
+
+    public String getVersion() {
+        return version;
+    }
+
+    public void setVersion(String version) {
         this.version = version;
     }
 

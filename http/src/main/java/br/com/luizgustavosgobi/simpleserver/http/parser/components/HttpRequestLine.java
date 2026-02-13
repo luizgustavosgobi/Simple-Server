@@ -1,10 +1,8 @@
 package br.com.luizgustavosgobi.simpleServer.http.parser.components;
 
 import br.com.luizgustavosgobi.simpleServer.http.enums.HttpMethod;
-import lombok.Getter;
 
-@Getter
-public class HttpRequestLine extends br.com.luizgustavosgobi.simpleServer.http.parser.components.HttpLine {
+public class HttpRequestLine extends HttpLine {
     private final HttpMethod method;
     private final URI uri;
 
@@ -16,6 +14,14 @@ public class HttpRequestLine extends br.com.luizgustavosgobi.simpleServer.http.p
 
     public HttpRequestLine(HttpMethod method, URI uri) {
         this(method, uri, "HTTP/1.1");
+    }
+
+    public HttpMethod getMethod() {
+        return method;
+    }
+
+    public URI getUri() {
+        return uri;
     }
 
     @Override

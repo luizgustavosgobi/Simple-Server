@@ -28,7 +28,7 @@ public class SocketStream {
         Object convertedData = dataPipeline.fireChannelWrite(data, context);
 
         if (convertedData instanceof byte[] byteArray) channelWriter.write(channel, byteArray);
-        if (convertedData instanceof String s) channelWriter.write(channel, s.getBytes());
+        else if (convertedData instanceof String s) channelWriter.write(channel, s.getBytes());
         else throw new InvalidTypeException("Cannot write data to an socket with the given type! only byte[] and String accepted");
     }
 }

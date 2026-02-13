@@ -2,12 +2,13 @@ package br.com.luizgustavosgobi.simpleServer.core.connection;
 
 import java.net.InetSocketAddress;
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class ClientConnectionTable implements ConnectionTable {
     private final Map<InetSocketAddress, Client> connections;
 
     public ClientConnectionTable() {
-        this.connections = new HashMap<>();
+        this.connections = new ConcurrentHashMap<>();
     }
 
     @Override

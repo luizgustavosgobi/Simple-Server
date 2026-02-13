@@ -23,7 +23,7 @@ public @interface Controller {
 
         @Override
         public AnnotationPriority getPriority() {
-            return AnnotationPriority.POST_CONSTRUCT;
+            return AnnotationPriority.BEAN_CREATION;
         }
 
         @Override

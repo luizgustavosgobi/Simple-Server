@@ -1,10 +1,8 @@
 package br.com.luizgustavosgobi.simpleServer.http.parser.components;
 
 import br.com.luizgustavosgobi.simpleServer.http.enums.HttpStatus;
-import lombok.Getter;
 
-@Getter
-public class HttpResponseLine extends br.com.luizgustavosgobi.simpleServer.http.parser.components.HttpLine {
+public class HttpResponseLine extends HttpLine {
     private final HttpStatus status;
 
     public HttpResponseLine(String version, HttpStatus status) {
@@ -14,6 +12,10 @@ public class HttpResponseLine extends br.com.luizgustavosgobi.simpleServer.http.
 
     public HttpResponseLine(HttpStatus status) {
         this("HTTP/1.1", status);
+    }
+
+    public HttpStatus getStatus() {
+        return status;
     }
 
     @Override

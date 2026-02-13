@@ -32,7 +32,7 @@ public class ScannerProvider {
     }
 
     public ScannerProvider findAnnotatedComponents() {
-        List<Class<?>> classes = classPathScanner.scan(knowPackages.toArray());
+        List<Class<?>> classes = classPathScanner.scan(knowPackages);
         List<AnnotationDto> annotations = annotationScanner.scan(classes);
         List<AnnotationDefinition<?>> processor = annotationProcessorScanner.scan(classes);
 

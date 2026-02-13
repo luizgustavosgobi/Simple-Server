@@ -1,10 +1,7 @@
 package br.com.luizgustavosgobi.simpleServer.http.parser.components;
 
-import lombok.Getter;
-
 import java.util.HashMap;
 
-@Getter
 public class URI {
     private final HashMap<String, String> query = new HashMap<>();
     private final String path;
@@ -21,6 +18,14 @@ public class URI {
 
     public String getQueryParam(String key) {
         return this.query.get(key);
+    }
+
+    public HashMap<String, String> getQueryParameters() {
+        return query;
+    }
+
+    public String getPath() {
+        return path;
     }
 
     @Override

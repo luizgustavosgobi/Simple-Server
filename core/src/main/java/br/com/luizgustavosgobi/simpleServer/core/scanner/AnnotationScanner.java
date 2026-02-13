@@ -8,22 +8,10 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AnnotationScanner implements Scanner<List<AnnotationDto>> {
+public class AnnotationScanner {
 
-    @Override
-    @SuppressWarnings("unchecked")
-    public List<AnnotationDto> scan(Object... args) {
-        if (args.length == 0)
-            throw new IllegalArgumentException("Annotation Scanner needs some argument argument!");
-
-        List<Class<?>> classes = new ArrayList<>();
+    public List<AnnotationDto> scan(List<Class<?>> classes) {
         List<AnnotationDto> annotations = new ArrayList<>();
-
-        if (args[0] instanceof List<?>)
-            classes.addAll((List<Class<?>>) args[0]);
-
-        else if (args[0] instanceof Class<?> clazz)
-            classes.add(clazz);
 
         for (Class<?> clazz : classes) {
             if (clazz.isAnnotation())

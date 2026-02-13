@@ -5,7 +5,6 @@ import br.com.luizgustavosgobi.simpleServer.core.configuration.ConfigurationMana
 import br.com.luizgustavosgobi.simpleServer.core.connection.Client;
 import br.com.luizgustavosgobi.simpleServer.core.connection.ConnectionHandler;
 import br.com.luizgustavosgobi.simpleServer.core.connection.ConnectionTable;
-import br.com.luizgustavosgobi.simpleServer.core.io.WriteScheduler;
 import jdk.net.ExtendedSocketOptions;
 
 import java.io.IOException;
@@ -21,7 +20,6 @@ public class AcceptEventHandler {
     private final boolean isBlockingIo;
 
     private final Selector selector;
-    private final WriteScheduler writeScheduler;
 
     private final ConfigurationManager configManager;
 
@@ -31,14 +29,13 @@ public class AcceptEventHandler {
     private final int KEEPALIVE_TRIES;
 
     public AcceptEventHandler(ConnectionTable connectionTable, ConnectionHandler connectionHandler,
-                            ThreadManager threadManager, Selector selector, boolean isBlockingIo, WriteScheduler writeScheduler) {
+                              ThreadManager threadManager, Selector selector, boolean isBlockingIo) {
         this.connectionTable = connectionTable;
         this.connectionHandler = connectionHandler;
         this.threadManager = threadManager;
         this.isBlockingIo = isBlockingIo;
         this.configManager = ConfigurationManager.getOrCreate();
         this.selector = selector;
-        this.writeScheduler = writeScheduler;
 
         this.KEEPALIVE = configManager.getBoolean("connection.keepalive", true);
         this.KEEPALIVE_IDLE_TIME = configManager.getInt("connection.keepalive.idle", 30);
@@ -58,6 +55,7 @@ public class AcceptEventHandler {
 
         SelectionKey key = clientChannel.register(selector, SelectionKey.OP_READ);
         client.setSelectionKey(key);
+        key.attach(client);
 
         connectionTable.add(client);
 

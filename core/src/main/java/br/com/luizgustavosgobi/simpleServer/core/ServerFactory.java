@@ -16,7 +16,7 @@ public class ServerFactory {
     private static final ServerRegistry serverRegistry = ServerRegistry.getInstance();
 
 
-    public static Server create(Class<?> mainClass, Integer port, ConnectionHandler connectionHandler, BeanRegistry externalBeanRegistry, DataPipeline dataPipeline) throws IOException {
+    public static Server create(Class<?> mainClass, Integer port, ConnectionHandler connectionHandler, ConnectionTable table, BeanRegistry externalBeanRegistry, DataPipeline dataPipeline) throws IOException {
         Logger logger = new Logger(mainClass.getSimpleName());
 
         int serverIndex = serverRegistry.getNextServerIndex();
@@ -26,7 +26,7 @@ public class ServerFactory {
         BeanRegistry applicationContext = bootstrap.getBeanRegistry();
 
         ThreadManager threadManager = new ThreadManager();
-        ConnectionTable connectionTable = new ClientConnectionTable();
+        ConnectionTable connectionTable = table;
 
         applicationContext.register(new BeanDefinition("THREAD_MANAGER", ThreadManager.class, BeanScope.SINGLETON, false, threadManager));
         applicationContext.register(new BeanDefinition("CONNECTION_TABLE", ConnectionTable.class, BeanScope.SINGLETON, false, connectionTable));
@@ -52,7 +52,7 @@ public class ServerFactory {
     }
 
     public static Server create(Class<?> mainClass, Integer port, ConnectionHandler connectionHandler, DataPipeline dataPipeline) throws IOException {
-        return create(mainClass, port, connectionHandler, new ApplicationContext(), dataPipeline);
+        return create(mainClass, port, connectionHandler, new ClientConnectionTable(), new ApplicationContext(), dataPipeline);
     }
 
     public static Server create(Class<?> mainClass, ConnectionHandler connectionHandler) throws IOException {

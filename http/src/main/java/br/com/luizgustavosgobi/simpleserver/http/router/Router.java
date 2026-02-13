@@ -1,13 +1,11 @@
 package br.com.luizgustavosgobi.simpleServer.http.router;
 
 import br.com.luizgustavosgobi.simpleServer.http.enums.HttpMethod;
-import lombok.Getter;
 
 import java.util.Hashtable;
 import java.util.regex.Pattern;
 
 public class Router {
-    @Getter
     private final Hashtable<HttpMethod, Hashtable<String, RouteHandler>> routes = new Hashtable<>();
     private final Hashtable<String, MiddlewareHandler> middlewares = new Hashtable<>();
 
@@ -32,5 +30,13 @@ public class Router {
             if (Pattern.matches(pattern, url)) return middlewares.get(pattern);
         }
         return null;
+    }
+
+    public Hashtable<HttpMethod, Hashtable<String, RouteHandler>> getRoutes() {
+        return routes;
+    }
+
+    public Hashtable<String, MiddlewareHandler> getMiddlewares() {
+        return middlewares;
     }
 }

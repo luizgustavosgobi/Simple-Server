@@ -2,10 +2,10 @@ package br.com.luizgustavosgobi.simpleServer.http.entities;
 
 import br.com.luizgustavosgobi.simpleServer.http.parser.components.HttpHeaders;
 import br.com.luizgustavosgobi.simpleServer.http.parser.components.HttpLine;
-import lombok.Getter;
 
-@Getter
-public class HttpEntity<T> {
+import java.lang.reflect.Type;
+
+public abstract class HttpEntity<T> {
     protected final HttpLine httpLine;
     protected final HttpHeaders headers;
     protected final T body;
@@ -28,14 +28,33 @@ public class HttpEntity<T> {
         return this.body != null;
     }
 
+    public Type getBodyType() {
+        if (this.body == null) return null;
+
+        T body = this.getBody();
+        return body.getClass();
+    }
+
     public boolean equals(Object other) {
         if (this == other) {
             return true;
         } else if (other != null && other.getClass() == this.getClass()) {
             HttpEntity<?> otherEntity = (HttpEntity<?>) other;
-            return this.headers ==  otherEntity.headers && this.body == otherEntity.body;
+            return this.headers == otherEntity.headers && this.body == otherEntity.body;
         } else {
             return false;
         }
+    }
+
+    public HttpLine getHttpLine() {
+        return httpLine;
+    }
+
+    public HttpHeaders getHeaders() {
+        return headers;
+    }
+
+    public T getBody() {
+        return body;
     }
 }

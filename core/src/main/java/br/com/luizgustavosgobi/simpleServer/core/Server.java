@@ -9,7 +9,6 @@ import br.com.luizgustavosgobi.simpleServer.core.handlers.AcceptEventHandler;
 import br.com.luizgustavosgobi.simpleServer.core.handlers.CloseEventHandler;
 import br.com.luizgustavosgobi.simpleServer.core.handlers.ReadEventHandler;
 import br.com.luizgustavosgobi.simpleServer.core.handlers.WriteEventHandler;
-import br.com.luizgustavosgobi.simpleServer.core.io.SelectorScheduler;
 import br.com.luizgustavosgobi.simpleServer.core.io.SocketStream;
 import br.com.luizgustavosgobi.simpleServer.core.logger.Logger;
 
@@ -40,8 +39,6 @@ public class Server implements ServerPort {
     private final SocketStream socketStream;
     private final DataPipeline dataPipeline;
 
-    private final SelectorScheduler selectorScheduler;
-
     private volatile boolean running = false;
 
 
@@ -65,11 +62,9 @@ public class Server implements ServerPort {
         this.selector = Selector.open();
         serverChannel.register(selector, SelectionKey.OP_ACCEPT);
 
-        this.selectorScheduler = new SelectorScheduler(selector);
-
-        this.acceptHandler = new AcceptEventHandler(connectionTable, connectionHandler, threadManager, selector, isBlockingIo, selectorScheduler);
+        this.acceptHandler = new AcceptEventHandler(connectionTable, connectionHandler, threadManager, selector, isBlockingIo);
         this.readHandler = new ReadEventHandler(connectionHandler, threadManager, socketStream);
-        this.writeHandler = new WriteEventHandler(connectionHandler, threadManager, socketStream, selectorScheduler);
+        this.writeHandler = new WriteEventHandler(connectionHandler, threadManager, socketStream);
         this.closeHandler = new CloseEventHandler(connectionTable, connectionHandler, threadManager);
     }
 
@@ -100,33 +95,32 @@ public class Server implements ServerPort {
                                 ServerSocketChannel serverChannel = (ServerSocketChannel) key.channel();
                                 SocketChannel clientChannel = serverChannel.accept();
 
-                                Client client = new Client(clientChannel, selectorScheduler);
+                                Client client = new Client(clientChannel);
 
                                 acceptHandler.handle(client);
                                 continue;
                             }
 
-                            SocketChannel channel = (SocketChannel) key.channel();
-                            Client client = connectionTable.get((InetSocketAddress) channel.getRemoteAddress());
-                            if (client == null)
-                                throw new IllegalArgumentException("Event disparate on an unregistered client");
-
-                            if (key.isReadable()) {
-                                boolean shouldKeepOpen = readHandler.handle(client);
-                                if (!shouldKeepOpen) key.cancel();
+                            Client client = (Client) key.attachment();
+                            if (client == null) {
+                                logger.warn("Event dispatched on an unregistered client, ignoring");
+                                key.cancel();
+                                continue;
                             }
 
+                            if (key.isReadable()) readHandler.handle(client);
                             else if (key.isWritable()) writeHandler.handle(client);
 
-                            if (!key.isValid()) closeHandler.handle(client);
+                            if (!key.isValid() || client.shouldClose()) closeHandler.handle(client);
                         } catch (Exception e) {
                             logger.error("Error handling event: " + e.getMessage());
 
                             if (key.isValid()) {
+                                Client client = (Client) key.attachment();
                                 SocketChannel channel = (SocketChannel) key.channel();
-                                Client client = connectionTable.get((InetSocketAddress) channel.getRemoteAddress());
+                                if (client == null) client = connectionTable.get((InetSocketAddress) channel.getRemoteAddress());
 
-                                closeHandler.handle(client);
+                                if (client != null) closeHandler.handle(client);
                             }
                         }
                     }

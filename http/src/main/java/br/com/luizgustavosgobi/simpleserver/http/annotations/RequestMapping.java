@@ -3,10 +3,6 @@ package br.com.luizgustavosgobi.simpleServer.http.annotations;
 import br.com.luizgustavosgobi.simpleServer.core.annotation.AnnotationDefinition;
 import br.com.luizgustavosgobi.simpleServer.core.annotation.AnnotationPriority;
 import br.com.luizgustavosgobi.simpleServer.core.context.BeanRegistry;
-import br.com.luizgustavosgobi.simpleServer.http.annotations.ParametersType.PathVariable;
-import br.com.luizgustavosgobi.simpleServer.http.annotations.ParametersType.RequestBody;
-import br.com.luizgustavosgobi.simpleServer.http.annotations.ParametersType.RequestHeader;
-import br.com.luizgustavosgobi.simpleServer.http.annotations.ParametersType.RequestParam;
 import br.com.luizgustavosgobi.simpleServer.http.entities.ResponseEntity;
 import br.com.luizgustavosgobi.simpleServer.http.enums.HttpMethod;
 import br.com.luizgustavosgobi.simpleServer.http.exceptions.InternalServerErrorException;
@@ -63,8 +59,9 @@ public @interface RequestMapping {
 
         public static RouteHandler createHandler(Method method, BeanRegistry applicationContext) {
             return (request) -> {
-                ObjectMapper objectMapper = (ObjectMapper) applicationContext.getBean(ObjectMapper.class).getInstance();
-                Validator validator = (Validator) applicationContext.getBean(Validator.class).getInstance();
+                ObjectMapper objectMapper = applicationContext.getInstance(ObjectMapper.class);
+                Validator validator = applicationContext.getInstance(Validator.class);
+
                 List<Object> args = new LinkedList<>();
 
                 for (Parameter parameter : method.getParameters()) {
@@ -130,12 +127,11 @@ public @interface RequestMapping {
                             }
                         }
                     }
-
                     args.add(value);
                 }
 
                 try {
-                    return (ResponseEntity<?>) method.invoke(applicationContext.getBean(method.getDeclaringClass()), args.toArray());
+                    return (ResponseEntity<?>) method.invoke(applicationContext.getInstance(method.getDeclaringClass()), args.toArray());
                 } catch (Exception e) {
                     e.printStackTrace();
                     throw new InternalServerErrorException();

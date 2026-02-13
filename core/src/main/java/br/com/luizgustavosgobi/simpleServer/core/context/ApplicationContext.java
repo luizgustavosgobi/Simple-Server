@@ -47,6 +47,12 @@ public class ApplicationContext implements BeanRegistry {
     }
 
     @Override
+    @SuppressWarnings("unchecked")
+    public <T> T getInstance(Class<?> type) {
+        return (T) getBean(type).getInstance();
+    }
+
+    @Override
     public boolean containsBean(String name) {
         return beans.containsKey(name);
     }

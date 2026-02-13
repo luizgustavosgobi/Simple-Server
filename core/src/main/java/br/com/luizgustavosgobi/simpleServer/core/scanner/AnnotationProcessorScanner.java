@@ -8,10 +8,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class AnnotationProcessorScanner implements Scanner<List<AnnotationDefinition<?>>> {
+public class AnnotationProcessorScanner {
     Map<Class<? extends Annotation>, AnnotationDefinition<?>> annotationProcessors = new HashMap<>();
 
-    @Override
     @SuppressWarnings("unchecked")
     public List<AnnotationDefinition<?>> scan(Object... args) {
         if (args.length == 0)
@@ -50,7 +49,7 @@ public class AnnotationProcessorScanner implements Scanner<List<AnnotationDefini
                 return;
             }
 
-            annotationProcessors.computeIfAbsent(annotationClass, k -> instance);
+            annotationProcessors.putIfAbsent(annotationClass, instance);
         }
     }
 }

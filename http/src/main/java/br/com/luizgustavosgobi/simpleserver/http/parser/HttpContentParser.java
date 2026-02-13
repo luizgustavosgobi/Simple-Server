@@ -20,11 +20,8 @@ public enum HttpContentParser {
 
         return new Json(node);
     }),
-    FORM_DATA ((body, args) -> MultipartFormDataHandler.parse(body, args[0]));
 
-    // --------------------------
-    //      Default Enum getter
-    // --------------------------
+    FORM_DATA ((body, args) -> MultipartFormDataHandler.parse(body, args[0]));
 
     @FunctionalInterface
     private interface ContentParser {

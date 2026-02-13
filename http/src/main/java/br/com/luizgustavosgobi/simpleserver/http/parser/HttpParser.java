@@ -12,9 +12,8 @@ import java.util.List;
 
 public class HttpParser {
 
-    public static RequestEntity<?> parse(byte[] data) throws InvalidHttpRequestException {
-        String rawRequest = new String(data);
-        List<String> requestLines = Arrays.asList(rawRequest.split("\r\n"));
+    public static RequestEntity<?> parse(String data) throws InvalidHttpRequestException {
+        List<String> requestLines = Arrays.asList(data.split("\r\n"));
 
         HttpRequestLine startLine = parseStartLine(requestLines.getFirst());
         if (startLine == null) { throw new InvalidHttpRequestException(); }
@@ -31,7 +30,7 @@ public class HttpParser {
                             .split("/")[1]
                             .split(";")[0].toUpperCase()
                             .replace("-", "_"))
-                    .parse(rawRequest.split("\r\n", i + 2)[i + 1], contentType);
+                    .parse(data.split("\r\n", i + 2)[i + 1], contentType);
         }
 
         return new RequestEntity<>(startLine, headers, bodyContent);

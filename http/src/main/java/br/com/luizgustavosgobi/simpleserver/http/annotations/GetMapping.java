@@ -1,10 +1,10 @@
 package br.com.luizgustavosgobi.simpleServer.http.annotations;
 
-import br.com.luizgustavosgobi.simpleServer.core.annotation.AnnotationPriority;
 import br.com.luizgustavosgobi.simpleServer.core.annotation.AnnotationDefinition;
-import br.com.luizgustavosgobi.simpleServer.core.context.ApplicationContext;
+import br.com.luizgustavosgobi.simpleServer.core.annotation.AnnotationPriority;
 import br.com.luizgustavosgobi.simpleServer.core.context.BeanRegistry;
 import br.com.luizgustavosgobi.simpleServer.http.enums.HttpMethod;
+import br.com.luizgustavosgobi.simpleServer.http.router.RouteHandler;
 import br.com.luizgustavosgobi.simpleServer.http.router.Router;
 
 import java.lang.annotation.*;
@@ -15,6 +15,7 @@ import java.lang.reflect.Method;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface GetMapping {
     String path() default "";
+    String value() default "";
 
     class Handler implements AnnotationDefinition<GetMapping> {
 
@@ -30,15 +31,16 @@ public @interface GetMapping {
 
         @Override
         public void process(AnnotatedElement element, Annotation annotation, BeanRegistry applicationContext) throws Exception {
-            GetMapping getMapping = element.getAnnotation(GetMapping.class);
+            GetMapping getMapping = (GetMapping) annotation;
+            Method method = (Method) element;
 
             String path = getMapping.path();
             if (path.isEmpty()) { path = "/"; }
 
-            Object instance = applicationContext.getBean(((Method) element).getDeclaringClass());
-            Router router = (Router) applicationContext.getBean(Router.class).getInstance();
+            Router router = applicationContext.getInstance(Router.class);
 
-            router.add(HttpMethod.GET, path, RequestMapping.Handler.createHandler((Method) element, applicationContext));
+            RouteHandler handler = RequestMapping.Handler.createHandler(method, applicationContext);
+            router.add(HttpMethod.GET, path, handler);
         }
     }
 }

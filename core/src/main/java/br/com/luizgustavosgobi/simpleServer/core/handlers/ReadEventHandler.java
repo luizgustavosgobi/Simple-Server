@@ -4,7 +4,6 @@ import br.com.luizgustavosgobi.simpleServer.core.ThreadManager;
 import br.com.luizgustavosgobi.simpleServer.core.connection.Client;
 import br.com.luizgustavosgobi.simpleServer.core.connection.ConnectionHandler;
 import br.com.luizgustavosgobi.simpleServer.core.io.SocketStream;
-import br.com.luizgustavosgobi.simpleServer.core.logger.Logger;
 
 public class ReadEventHandler {
     private final ConnectionHandler connectionHandler;
@@ -17,16 +16,9 @@ public class ReadEventHandler {
         this.socketStream = socketStream;
     }
 
-    public boolean handle(Client client) {
-        try {
-            Object data = socketStream.read(client.getChannel(), client.getDataPipelineContext());
+    public void handle(Client client) throws Exception {
+        Object data = socketStream.read(client.getChannel(), client.getDataPipelineContext());
 
-            threadManager.submitToIO(() -> connectionHandler.onRead(client, data));
-        } catch (Exception e) {
-            Logger.Debug("Client closed connection: " + client.getAddress());
-            return false;
-        }
-
-        return true;
+        threadManager.submitToIO(() -> connectionHandler.onRead(client, data));
     }
 }
