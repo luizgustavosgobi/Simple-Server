@@ -1,9 +1,10 @@
-package br.com.luizgustavosgobi.simpleServer.http.entities;
+package br.com.luizgustavosgobi.simpleServer.http.entities.builders;
 
+import br.com.luizgustavosgobi.simpleServer.http.entities.components.HttpResponseLine;
+import br.com.luizgustavosgobi.simpleServer.http.entities.ResponseEntity;
+import br.com.luizgustavosgobi.simpleServer.http.entities.components.URI;
 import br.com.luizgustavosgobi.simpleServer.http.enums.HttpMethod;
 import br.com.luizgustavosgobi.simpleServer.http.enums.HttpStatus;
-import br.com.luizgustavosgobi.simpleServer.http.parser.components.HttpResponseLine;
-import br.com.luizgustavosgobi.simpleServer.http.parser.components.URI;
 
 public class HttpResponseBuilder extends HttpBuilder {
 

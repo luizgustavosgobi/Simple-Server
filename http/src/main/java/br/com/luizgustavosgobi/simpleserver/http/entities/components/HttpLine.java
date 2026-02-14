@@ -1,4 +1,4 @@
-package br.com.luizgustavosgobi.simpleServer.http.parser.components;
+package br.com.luizgustavosgobi.simpleServer.http.entities.components;
 
 public abstract class HttpLine {
     protected String version;

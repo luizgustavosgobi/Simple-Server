@@ -25,6 +25,8 @@ public @interface Configuration {
         }
 
         @Override
-        public void process(AnnotatedElement element, Annotation annotation, BeanRegistry applicationContext) throws Exception {}
+        public void process(AnnotatedElement element, Annotation annotation, BeanRegistry applicationContext) throws Exception {
+
+        }
     }
 }

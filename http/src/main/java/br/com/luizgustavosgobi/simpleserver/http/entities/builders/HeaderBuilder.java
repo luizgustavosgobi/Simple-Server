@@ -1,4 +1,4 @@
-package br.com.luizgustavosgobi.simpleServer.http.entities;
+package br.com.luizgustavosgobi.simpleServer.http.entities.builders;
 
 import br.com.luizgustavosgobi.simpleServer.http.enums.HttpStatus;
 

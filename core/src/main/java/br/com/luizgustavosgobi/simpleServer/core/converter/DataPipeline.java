@@ -4,13 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DataPipeline {
-    private final List<ChanelHandler> handlers;
+    private final List<ChannelHandler> handlers;
 
     public DataPipeline() {
         this.handlers = new ArrayList<>();
     }
 
-    public DataPipeline addLast(ChanelHandler handler) {
+    public DataPipeline addLast(ChannelHandler handler) {
         handlers.addLast(handler);
         return this;
     }
@@ -18,7 +18,7 @@ public class DataPipeline {
     public Object fireChannelRead(Object msg, DataPipelineContext context) throws Exception {
         Object currentMsg = msg;
 
-        for (ChanelHandler handler : handlers) {
+        for (ChannelHandler handler : handlers) {
             currentMsg = handler.channelRead(context, currentMsg);
             if (currentMsg == null) break;
         }

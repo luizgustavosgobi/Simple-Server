@@ -29,7 +29,7 @@ public class HttpApplication {
         pipeline.addLast(new ByteToStringCodec())
                 .addLast(new StringToHttpCoded());
 
-        HttpConnectionHandler handler = new HttpConnectionHandler(router, connTable);
+        HttpConnectionHandler handler = new HttpConnectionHandler(router);
 
         context.register(new BeanDefinition("ROUTER", Router.class, BeanScope.SINGLETON, router));
         context.register(new BeanDefinition("OBJECT_MAPPER", ObjectMapper.class, BeanScope.SINGLETON, new ObjectMapper()));
@@ -37,6 +37,7 @@ public class HttpApplication {
 
         try {
             Server server = ServerFactory.create(mainClass, port, handler, connTable, context, pipeline);
+
             server.start();
             return server;
         } catch (Exception e) {

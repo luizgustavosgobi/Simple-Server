@@ -1,6 +1,6 @@
 package br.com.luizgustavosgobi.simpleServer.core.converter;
 
-public abstract class ChanelInboundHandler implements ChanelHandler {
+public abstract class ChannelInboundHandler implements ChannelHandler {
 
     @Override
     public abstract Object channelRead(DataPipelineContext ctx, Object msg) throws Exception;

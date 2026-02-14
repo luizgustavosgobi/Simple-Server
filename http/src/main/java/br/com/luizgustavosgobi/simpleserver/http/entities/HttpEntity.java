@@ -1,7 +1,7 @@
 package br.com.luizgustavosgobi.simpleServer.http.entities;
 
-import br.com.luizgustavosgobi.simpleServer.http.parser.components.HttpHeaders;
-import br.com.luizgustavosgobi.simpleServer.http.parser.components.HttpLine;
+import br.com.luizgustavosgobi.simpleServer.http.entities.components.HttpHeaders;
+import br.com.luizgustavosgobi.simpleServer.http.entities.components.HttpLine;
 
 import java.lang.reflect.Type;
 

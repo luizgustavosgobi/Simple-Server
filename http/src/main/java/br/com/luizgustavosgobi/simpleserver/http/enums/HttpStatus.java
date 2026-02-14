@@ -5,6 +5,7 @@ public enum HttpStatus {
     SWITCHING_PROTOCOLS(101, HttpStatus.Series.INFORMATIONAL, "Switching Protocols"),
     PROCESSING(102, HttpStatus.Series.INFORMATIONAL, "Processing"),
     EARLY_HINTS(103, HttpStatus.Series.INFORMATIONAL, "Early Hints"),
+
     OK(200, HttpStatus.Series.SUCCESSFUL, "OK"),
     CREATED(201, HttpStatus.Series.SUCCESSFUL, "Created"),
     ACCEPTED(202, HttpStatus.Series.SUCCESSFUL, "Accepted"),
@@ -15,6 +16,7 @@ public enum HttpStatus {
     MULTI_STATUS(207, HttpStatus.Series.SUCCESSFUL, "Multi-Status"),
     ALREADY_REPORTED(208, HttpStatus.Series.SUCCESSFUL, "Already Reported"),
     IM_USED(226, HttpStatus.Series.SUCCESSFUL, "IM Used"),
+
     MULTIPLE_CHOICES(300, HttpStatus.Series.REDIRECTION, "Multiple Choices"),
     MOVED_PERMANENTLY(301, HttpStatus.Series.REDIRECTION, "Moved Permanently"),
     FOUND(302, HttpStatus.Series.REDIRECTION, "Found"),
@@ -22,6 +24,7 @@ public enum HttpStatus {
     NOT_MODIFIED(304, HttpStatus.Series.REDIRECTION, "Not Modified"),
     TEMPORARY_REDIRECT(307, HttpStatus.Series.REDIRECTION, "Temporary Redirect"),
     PERMANENT_REDIRECT(308, HttpStatus.Series.REDIRECTION, "Permanent Redirect"),
+
     BAD_REQUEST(400, HttpStatus.Series.CLIENT_ERROR, "Bad Request"),
     UNAUTHORIZED(401, HttpStatus.Series.CLIENT_ERROR, "Unauthorized"),
     PAYMENT_REQUIRED(402, HttpStatus.Series.CLIENT_ERROR, "Payment Required"),
@@ -50,6 +53,7 @@ public enum HttpStatus {
     TOO_MANY_REQUESTS(429, HttpStatus.Series.CLIENT_ERROR, "Too Many Requests"),
     REQUEST_HEADER_FIELDS_TOO_LARGE(431, HttpStatus.Series.CLIENT_ERROR, "Request Header Fields Too Large"),
     UNAVAILABLE_FOR_LEGAL_REASONS(451, HttpStatus.Series.CLIENT_ERROR, "Unavailable For Legal Reasons"),
+
     INTERNAL_SERVER_ERROR(500, HttpStatus.Series.SERVER_ERROR, "Internal Server Error"),
     NOT_IMPLEMENTED(501, HttpStatus.Series.SERVER_ERROR, "Not Implemented"),
     BAD_GATEWAY(502, HttpStatus.Series.SERVER_ERROR, "Bad Gateway"),

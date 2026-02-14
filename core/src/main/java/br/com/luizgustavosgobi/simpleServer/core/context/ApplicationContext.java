@@ -41,7 +41,7 @@ public class ApplicationContext implements BeanRegistry {
     public BeanDefinition getBean(Class<?> type) {
         String beanName = typesToNameMapping.get(type);
         if (beanName == null)
-            throw new IllegalArgumentException("No bean found with the type: "+ type.getName());
+            return null;
 
         return beans.get(beanName);
     }

@@ -1,6 +1,6 @@
 package br.com.luizgustavosgobi.simpleServer.core.converter;
 
-public class ByteToStringCodec implements ChanelHandler {
+public class ByteToStringCodec implements ChannelHandler {
 
     @Override
     public String channelRead(DataPipelineContext ctx, Object msg) throws Exception {

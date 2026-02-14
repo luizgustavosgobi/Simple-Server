@@ -7,6 +7,7 @@ import br.com.luizgustavosgobi.simpleServer.core.connection.ConnectionTable;
 import br.com.luizgustavosgobi.simpleServer.core.connection.ClientConnectionTable;
 import br.com.luizgustavosgobi.simpleServer.core.context.*;
 import br.com.luizgustavosgobi.simpleServer.core.converter.DataPipeline;
+import br.com.luizgustavosgobi.simpleServer.core.filters.FilterChainProxy;
 import br.com.luizgustavosgobi.simpleServer.core.logger.Logger;
 
 import java.io.IOException;
@@ -31,6 +32,8 @@ public class ServerFactory {
         applicationContext.register(new BeanDefinition("THREAD_MANAGER", ThreadManager.class, BeanScope.SINGLETON, false, threadManager));
         applicationContext.register(new BeanDefinition("CONNECTION_TABLE", ConnectionTable.class, BeanScope.SINGLETON, false, connectionTable));
 
+        FilterChainProxy filterChainProxy = applicationContext.getInstance(FilterChainProxy.class);
+
         Server server = new Server(
                 config.getPort(),
                 config.isBlocking(),
@@ -39,7 +42,8 @@ public class ServerFactory {
                 threadManager,
                 applicationContext,
                 logger,
-                dataPipeline
+                dataPipeline,
+                filterChainProxy
         );
 
         applicationContext.register(new BeanDefinition("SERVER", Server.class, BeanScope.SINGLETON, false, server));

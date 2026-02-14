@@ -1,9 +1,10 @@
 package br.com.luizgustavosgobi.simpleServer.http.entities;
 
+import br.com.luizgustavosgobi.simpleServer.http.entities.builders.HttpResponseBuilder;
+import br.com.luizgustavosgobi.simpleServer.http.entities.components.HttpHeaders;
+import br.com.luizgustavosgobi.simpleServer.http.entities.components.HttpLine;
+import br.com.luizgustavosgobi.simpleServer.http.entities.components.HttpResponseLine;
 import br.com.luizgustavosgobi.simpleServer.http.enums.HttpStatus;
-import br.com.luizgustavosgobi.simpleServer.http.parser.components.HttpHeaders;
-import br.com.luizgustavosgobi.simpleServer.http.parser.components.HttpLine;
-import br.com.luizgustavosgobi.simpleServer.http.parser.components.HttpResponseLine;
 
 public class ResponseEntity<T> extends HttpEntity<T> {
 
@@ -17,6 +18,10 @@ public class ResponseEntity<T> extends HttpEntity<T> {
 
     public ResponseEntity(HttpStatus status, T body) {
         this(new HttpResponseLine(status), new HttpHeaders(), body);
+    }
+
+    public ResponseEntity(T body) {
+        this(new HttpResponseLine(HttpStatus.OK), new HttpHeaders(), body);
     }
 
     public ResponseEntity() {

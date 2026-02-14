@@ -1,12 +1,12 @@
 package br.com.luizgustavosgobi.simpleServer.http;
 
-import br.com.luizgustavosgobi.simpleServer.core.converter.ChanelHandler;
+import br.com.luizgustavosgobi.simpleServer.core.converter.ChannelHandler;
 import br.com.luizgustavosgobi.simpleServer.core.converter.DataPipelineContext;
 import br.com.luizgustavosgobi.simpleServer.http.entities.RequestEntity;
 import br.com.luizgustavosgobi.simpleServer.http.entities.ResponseEntity;
 import br.com.luizgustavosgobi.simpleServer.http.parser.HttpParser;
 
-public class StringToHttpCoded implements ChanelHandler {
+public class StringToHttpCoded implements ChannelHandler {
 
     @Override
     public RequestEntity<?> channelRead(DataPipelineContext ctx, Object msg) throws Exception {

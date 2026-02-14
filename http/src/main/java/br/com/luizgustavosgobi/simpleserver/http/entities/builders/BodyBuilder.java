@@ -1,4 +1,6 @@
-package br.com.luizgustavosgobi.simpleServer.http.entities;
+package br.com.luizgustavosgobi.simpleServer.http.entities.builders;
+
+import br.com.luizgustavosgobi.simpleServer.http.entities.HttpEntity;
 
 public interface BodyBuilder <C extends BodyBuilder<C>>{
 

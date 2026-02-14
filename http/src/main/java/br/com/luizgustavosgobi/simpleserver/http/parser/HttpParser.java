@@ -3,9 +3,9 @@ package br.com.luizgustavosgobi.simpleServer.http.parser;
 import br.com.luizgustavosgobi.simpleServer.http.entities.RequestEntity;
 import br.com.luizgustavosgobi.simpleServer.http.enums.HttpMethod;
 import br.com.luizgustavosgobi.simpleServer.http.exceptions.InvalidHttpRequestException;
-import br.com.luizgustavosgobi.simpleServer.http.parser.components.HttpHeaders;
-import br.com.luizgustavosgobi.simpleServer.http.parser.components.HttpRequestLine;
-import br.com.luizgustavosgobi.simpleServer.http.parser.components.URI;
+import br.com.luizgustavosgobi.simpleServer.http.entities.components.HttpHeaders;
+import br.com.luizgustavosgobi.simpleServer.http.entities.components.HttpRequestLine;
+import br.com.luizgustavosgobi.simpleServer.http.entities.components.URI;
 
 import java.util.Arrays;
 import java.util.List;

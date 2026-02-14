@@ -5,6 +5,7 @@ import br.com.luizgustavosgobi.simpleServer.core.connection.ConnectionHandler;
 import br.com.luizgustavosgobi.simpleServer.core.connection.ConnectionTable;
 import br.com.luizgustavosgobi.simpleServer.core.context.BeanRegistry;
 import br.com.luizgustavosgobi.simpleServer.core.converter.DataPipeline;
+import br.com.luizgustavosgobi.simpleServer.core.filters.FilterChainProxy;
 import br.com.luizgustavosgobi.simpleServer.core.handlers.AcceptEventHandler;
 import br.com.luizgustavosgobi.simpleServer.core.handlers.CloseEventHandler;
 import br.com.luizgustavosgobi.simpleServer.core.handlers.ReadEventHandler;
@@ -38,12 +39,14 @@ public class Server implements ServerPort {
 
     private final SocketStream socketStream;
     private final DataPipeline dataPipeline;
+    private final FilterChainProxy filterChainProxy;
 
     private volatile boolean running = false;
 
 
     public Server(int port, boolean blocking, ConnectionTable connectionTable, ConnectionHandler connectionHandler,
-                  ThreadManager threadManager, BeanRegistry context, Logger logger, DataPipeline dataPipeline) throws IOException {
+                  ThreadManager threadManager, BeanRegistry context, Logger logger,
+                  DataPipeline dataPipeline, FilterChainProxy filterChainProxy) throws IOException {
 
         this.port = port;
         this.isBlockingIo = blocking;
@@ -54,6 +57,7 @@ public class Server implements ServerPort {
         this.logger = logger;
         this.dataPipeline = dataPipeline;
         this.socketStream = new SocketStream(dataPipeline);
+        this.filterChainProxy = filterChainProxy;
 
         this.serverChannel = ServerSocketChannel.open();
         serverChannel.bind(new InetSocketAddress(port));
@@ -63,7 +67,7 @@ public class Server implements ServerPort {
         serverChannel.register(selector, SelectionKey.OP_ACCEPT);
 
         this.acceptHandler = new AcceptEventHandler(connectionTable, connectionHandler, threadManager, selector, isBlockingIo);
-        this.readHandler = new ReadEventHandler(connectionHandler, threadManager, socketStream);
+        this.readHandler = new ReadEventHandler(connectionHandler, threadManager, socketStream, filterChainProxy);
         this.writeHandler = new WriteEventHandler(connectionHandler, threadManager, socketStream);
         this.closeHandler = new CloseEventHandler(connectionTable, connectionHandler, threadManager);
     }
@@ -71,7 +75,7 @@ public class Server implements ServerPort {
     public Server(int port, boolean blocking, ConnectionTable connectionTable, ConnectionHandler connectionHandler,
                   BeanRegistry context, Logger logger, DataPipeline dataPipeline) throws IOException {
 
-        this(port, blocking, connectionTable, connectionHandler, new ThreadManager(), context, logger, dataPipeline);
+        this(port, blocking, connectionTable, connectionHandler, new ThreadManager(), context, logger, dataPipeline, null);
     }
 
 

@@ -2,7 +2,6 @@ package br.com.luizgustavosgobi.simpleServer.http;
 
 import br.com.luizgustavosgobi.simpleServer.core.connection.Client;
 import br.com.luizgustavosgobi.simpleServer.core.connection.ConnectionHandler;
-import br.com.luizgustavosgobi.simpleServer.core.connection.ConnectionTable;
 import br.com.luizgustavosgobi.simpleServer.core.logger.Logger;
 import br.com.luizgustavosgobi.simpleServer.http.entities.RequestEntity;
 import br.com.luizgustavosgobi.simpleServer.http.entities.ResponseEntity;
@@ -13,11 +12,9 @@ import br.com.luizgustavosgobi.simpleServer.http.router.Router;
 
 public class HttpConnectionHandler implements ConnectionHandler {
     private final Router router;
-    private final ConnectionTable connectionTable;
 
-    public HttpConnectionHandler(Router router, ConnectionTable connectionTable) {
+    public HttpConnectionHandler(Router router) {
         this.router = router;
-        this.connectionTable = connectionTable;
     }
 
     @Override
@@ -36,28 +33,21 @@ public class HttpConnectionHandler implements ConnectionHandler {
         RequestEntity<?> request = (RequestEntity<?>) data;
         ResponseEntity<?> response;
 
-        Logger.Good(client.getAddress() + ": " + request.getMethod() + " " + request.getUri());
-
         try {
             RouteHandler routeHandler = router.get(request.getMethod(), request.getUri().getPath());
-            if (routeHandler != null) {
-                //MiddlewareHandler middlewareHandler = router.getMatchingMiddleware(request.getUri().getPath());
 
-//                if (middlewareHandler != null) {
-//                    response = middlewareHandler.handle(request);
-//
-//                    if (response.isMiddlewarePassed()) {
-//                        response = routeHandler.handle(request);
-//                    }
-//                } else response = routeHandler.handle(request);
-
-                response = routeHandler.handle(request);
-            } else throw new NotFoundHttpException("Route " + request.getMethod() + " " + request.getUri().getPath() + " not found");
+            if (routeHandler != null) response = routeHandler.handle(request);
+            else throw new NotFoundHttpException("Route " + request.getMethod() + " " + request.getUri().getPath() + " not found");
         } catch (HttpException e) {
             response = e.makeResponse();
+        } catch (Exception e) {
+            Logger.Error(this, "Error processing request: " + e.getMessage());
+            response = ResponseEntity.internalServerError().body("Internal Server Error: " + e.getMessage());
         }
 
-        response.getHttpLine().setVersion(response.getHttpLine().getVersion());
-        client.write(response);
+        if (response != null) {
+            response.getHttpLine().setVersion(request.getVersion());
+            client.write(response);
+        }
     }
 }

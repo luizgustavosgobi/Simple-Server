@@ -1,9 +1,10 @@
-package br.com.luizgustavosgobi.simpleServer.http.entities;
+package br.com.luizgustavosgobi.simpleServer.http.entities.builders;
 
+import br.com.luizgustavosgobi.simpleServer.http.entities.HttpEntity;
+import br.com.luizgustavosgobi.simpleServer.http.entities.components.HttpHeaders;
+import br.com.luizgustavosgobi.simpleServer.http.entities.components.URI;
 import br.com.luizgustavosgobi.simpleServer.http.enums.HttpMethod;
 import br.com.luizgustavosgobi.simpleServer.http.enums.HttpStatus;
-import br.com.luizgustavosgobi.simpleServer.http.parser.components.HttpHeaders;
-import br.com.luizgustavosgobi.simpleServer.http.parser.components.URI;
 
 import java.nio.charset.Charset;
 import java.time.Instant;
