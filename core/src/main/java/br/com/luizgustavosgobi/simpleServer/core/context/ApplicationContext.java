@@ -49,7 +49,11 @@ public class ApplicationContext implements BeanRegistry {
     @Override
     @SuppressWarnings("unchecked")
     public <T> T getInstance(Class<?> type) {
-        return (T) getBean(type).getInstance();
+        BeanDefinition beanDef = getBean(type);
+        if (beanDef == null) {
+            return null;
+        }
+        return (T) beanDef.getInstance(this);
     }
 
     @Override

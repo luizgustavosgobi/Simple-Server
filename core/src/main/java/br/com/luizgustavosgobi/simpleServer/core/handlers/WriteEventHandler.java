@@ -21,6 +21,8 @@ public class WriteEventHandler {
 
     public void handle(Client client) {
         try {
+            threadManager.submitToIO(() -> connectionHandler.onWrite(client));
+
             while (client.hasWrites()) {
                 Object data = client.pollWrite();
                 if (data == null) break;
@@ -35,7 +37,6 @@ public class WriteEventHandler {
                 if (attribute != null && (boolean) attribute) client.shouldClose(true);
             }
 
-            threadManager.submitToIO(() -> connectionHandler.onWrite(client));
         } catch (Exception e) {
             Logger.Error("Error writing to client " + client.getAddress() + ": " + e.getMessage());
             e.printStackTrace();

@@ -4,7 +4,6 @@ public class BeanDefinitionBuilder {
     private String name;
     private Class<?> type;
     private BeanScope scope = BeanScope.SINGLETON;
-    private boolean lazyInit = false;
     private Object instance = null;
 
     public static BeanDefinitionBuilder builder() {
@@ -28,12 +27,6 @@ public class BeanDefinitionBuilder {
 
     public BeanDefinitionBuilder instance(Object instance) {
         this.instance = instance;
-        this.lazyInit = false;
-        return this;
-    }
-
-    public BeanDefinitionBuilder lazyInit(boolean lazyInit) {
-        this.lazyInit = lazyInit;
         return this;
     }
 
@@ -62,6 +55,6 @@ public class BeanDefinitionBuilder {
             throw new IllegalStateException("Bean name and type is required!");
         }
 
-        return new BeanDefinition(name, type, scope, lazyInit, instance);
+        return new BeanDefinition(name, type, scope, instance);
     }
 }

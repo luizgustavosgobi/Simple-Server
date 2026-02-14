@@ -29,9 +29,8 @@ public @interface Controller {
         @Override
         public void process(AnnotatedElement element, Annotation __, BeanRegistry applicationContext) throws Exception {
             Class<?> clazz = (Class<?>) element;
-            Object controller = applicationContext.getBean(clazz.getName());
 
-            if (controller == null) {
+            if (!applicationContext.containsBean(clazz)) {
                 throw new IllegalStateException("Controller " + clazz.getName() + " não foi processado como Bean primeiro");
             }
         }

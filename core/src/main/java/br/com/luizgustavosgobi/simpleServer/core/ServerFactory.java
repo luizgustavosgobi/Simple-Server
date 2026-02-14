@@ -29,8 +29,8 @@ public class ServerFactory {
         ThreadManager threadManager = new ThreadManager();
         ConnectionTable connectionTable = table;
 
-        applicationContext.register(new BeanDefinition("THREAD_MANAGER", ThreadManager.class, BeanScope.SINGLETON, false, threadManager));
-        applicationContext.register(new BeanDefinition("CONNECTION_TABLE", ConnectionTable.class, BeanScope.SINGLETON, false, connectionTable));
+        applicationContext.register(new BeanDefinition("THREAD_MANAGER", ThreadManager.class, BeanScope.SINGLETON, threadManager));
+        applicationContext.register(new BeanDefinition("CONNECTION_TABLE", ConnectionTable.class, BeanScope.SINGLETON, connectionTable));
 
         FilterChainProxy filterChainProxy = applicationContext.getInstance(FilterChainProxy.class);
 
@@ -46,7 +46,7 @@ public class ServerFactory {
                 filterChainProxy
         );
 
-        applicationContext.register(new BeanDefinition("SERVER", Server.class, BeanScope.SINGLETON, false, server));
+        applicationContext.register(new BeanDefinition("SERVER", Server.class, BeanScope.SINGLETON, server));
 
         serverRegistry.registerServer(mainClass, server);
 

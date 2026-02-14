@@ -5,9 +5,11 @@ import br.com.luizgustavosgobi.simpleServer.core.annotation.AnnotationPriority;
 import br.com.luizgustavosgobi.simpleServer.core.context.BeanDefinition;
 import br.com.luizgustavosgobi.simpleServer.core.context.BeanRegistry;
 import br.com.luizgustavosgobi.simpleServer.core.context.BeanScope;
+import br.com.luizgustavosgobi.simpleServer.core.logger.Logger;
 
 import java.lang.annotation.*;
 import java.lang.reflect.AnnotatedElement;
+import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
 import java.lang.reflect.Parameter;
 import java.util.ArrayList;
@@ -36,24 +38,72 @@ public @interface Bean {
                 case "Class" -> {
                     Class<?> clazz = (Class<?>) element;
 
-                    Object instance = clazz.getDeclaredConstructor().newInstance();
+                    Constructor<?>[] constructors = clazz.getConstructors();
+                    if (constructors.length == 0)
+                        throw new IllegalStateException("Cannot instantiate bean " + clazz.getSimpleName() + ": no public constructors");
 
-                    BeanDefinition bean = new BeanDefinition(clazz.getName(), clazz, BeanScope.SINGLETON, instance);
+                    Constructor<?> bestConstructor = null;
+                    int maxParams = -1;
+                    Class<?>[] bestDependencies = null;
+
+                    for (Constructor<?> constructor : constructors) {
+                        Parameter[] parameters = constructor.getParameters();
+                        List<Class<?>> dependencies = new ArrayList<>();
+
+                        for (Parameter parameter : parameters) {
+                            Class<?> paramType = parameter.getType();
+                            dependencies.add(paramType);
+                        }
+
+                        if (parameters.length > maxParams) {
+                            bestConstructor = constructor;
+                            maxParams = parameters.length;
+                            bestDependencies = dependencies.toArray(new Class<?>[0]);
+                        }
+                    }
+
+
+                    BeanDefinition bean = new BeanDefinition(
+                            clazz.getName(),
+                            clazz,
+                            BeanScope.SINGLETON,
+                            bestConstructor,
+                            bestDependencies
+                    );
+
                     applicationContext.register(bean);
+                    Logger.Debug("Bean registered: " + clazz.getSimpleName() + " with constructor having " + maxParams + " dependencies");
                 }
 
                 case "Method" -> {
                     Method method = (Method) element;
 
                     List<Object> parameters = new ArrayList<>();
+                    boolean allResolved = true;
 
-                    for (Parameter parameter : method.getParameters())
-                        parameters.add(applicationContext.getBean(parameter.getType()).getInstance());
+                    for (Parameter parameter : method.getParameters()) {
+                        Object paramInstance = applicationContext.getInstance(parameter.getType());
+                        if (paramInstance == null) {
+                            allResolved = false;
+                            break;
+                        }
+                        parameters.add(paramInstance);
+                    }
 
-                    Object classInstance = applicationContext.getBean(method.getDeclaringClass());
-                    Object beanInstance =  method.invoke(classInstance, parameters.isEmpty() ? null : parameters.toArray());
+                    if (!allResolved) return;
 
-                    BeanDefinition bean = new BeanDefinition(beanInstance.getClass().getName(), beanInstance.getClass(), BeanScope.SINGLETON, beanInstance);
+                    Object classInstance = applicationContext.getInstance(method.getDeclaringClass());
+                    if (classInstance == null) return;
+
+                    Object beanInstance = method.invoke(classInstance, parameters.isEmpty() ? null : parameters.toArray());
+
+                    BeanDefinition bean = new BeanDefinition(
+                            beanInstance.getClass().getName(),
+                            beanInstance.getClass(),
+                            BeanScope.SINGLETON,
+                            beanInstance
+                    );
+
                     applicationContext.register(bean);
                 }
 

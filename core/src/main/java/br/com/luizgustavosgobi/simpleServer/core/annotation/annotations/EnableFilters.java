@@ -19,7 +19,7 @@ import java.util.List;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface EnableFilters {
 
-    class Handler implements AnnotationDefinition<EnableFilters> {
+    class EnableFiltersHandler implements AnnotationDefinition<EnableFilters> {
 
         @Override
         public Class<EnableFilters> getAnnotationType() {

@@ -4,68 +4,26 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d97d083f-3a98-435e-a75a-f94708f8d527" name="Changes" comment="Refactor HTTP handling and enhance request/response processing&#10;Need to refactor the old Router system and the Request Mapping logic">
-      <change afterPath="$PROJECT_DIR$/core/src/main/java/br/com/luizgustavosgobi/simpleServer/core/annotation/annotations/EnableFilters.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/src/main/java/br/com/luizgustavosgobi/simpleServer/core/filters/Filter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/src/main/java/br/com/luizgustavosgobi/simpleServer/core/filters/FilterBuilder.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/src/main/java/br/com/luizgustavosgobi/simpleServer/core/filters/FilterChain.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/src/main/java/br/com/luizgustavosgobi/simpleServer/core/filters/FilterChainProxy.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/src/main/java/br/com/luizgustavosgobi/simpleServer/core/filters/FilterContext.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/src/main/java/br/com/luizgustavosgobi/simpleServer/core/filters/FilterOrder.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/src/main/java/br/com/luizgustavosgobi/simpleServer/core/filters/OrderedFilter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/src/main/java/br/com/luizgustavosgobi/simpleServer/core/filters/RequestProcessor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/src/main/java/br/com/luizgustavosgobi/simpleServer/core/filters/impl/LoggingFilter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/FILTER_CHAIN_GUIDE.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/http/src/main/java/br/com/luizgustavosgobi/simpleserver/http/annotations/EnableWebFilters.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/http/src/main/java/br/com/luizgustavosgobi/simpleserver/http/entities/builders/BodyBuilder.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/http/src/main/java/br/com/luizgustavosgobi/simpleserver/http/entities/builders/HeaderBuilder.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/http/src/main/java/br/com/luizgustavosgobi/simpleserver/http/entities/builders/HttpBuilder.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/http/src/main/java/br/com/luizgustavosgobi/simpleserver/http/entities/builders/HttpRequestBuilder.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/http/src/main/java/br/com/luizgustavosgobi/simpleserver/http/entities/builders/HttpResponseBuilder.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/http/src/main/java/br/com/luizgustavosgobi/simpleserver/http/entities/components/HttpHeaders.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/http/src/main/java/br/com/luizgustavosgobi/simpleserver/http/entities/components/HttpLine.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/http/src/main/java/br/com/luizgustavosgobi/simpleserver/http/entities/components/HttpRequestLine.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/http/src/main/java/br/com/luizgustavosgobi/simpleserver/http/entities/components/HttpResponseLine.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/http/src/main/java/br/com/luizgustavosgobi/simpleserver/http/entities/components/URI.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/http/src/main/java/br/com/luizgustavosgobi/simpleserver/http/filters/HttpFilterBuilder.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/http/src/main/java/br/com/luizgustavosgobi/simpleserver/http/filters/HttpFilterChain.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/http/src/main/java/br/com/luizgustavosgobi/simpleserver/http/filters/HttpFilterChainProxy.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/http/src/main/java/br/com/luizgustavosgobi/simpleserver/http/filters/HttpFilterContext.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/http/src/main/java/br/com/luizgustavosgobi/simpleserver/http/filters/impl/CorsFilter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/http/src/main/java/br/com/luizgustavosgobi/simpleserver/http/filters/impl/LoggingFilter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/br/com/luizgustavosgobi/testes/WebSecurityConfig.java" afterDir="false" />
+    <list default="true" id="d97d083f-3a98-435e-a75a-f94708f8d527" name="Changes" comment="A big Refactor on HTTP server! &#10;Create a Filter System!">
+      <change afterPath="$PROJECT_DIR$/http/src/main/java/br/com/luizgustavosgobi/simpleserver/http/filters/impl/HttpLoggingFilter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/br/com/luizgustavosgobi/simpleServer/core/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/br/com/luizgustavosgobi/simpleServer/core/Server.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/src/main/java/br/com/luizgustavosgobi/simpleServer/core/ServerFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/br/com/luizgustavosgobi/simpleServer/core/ServerFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/br/com/luizgustavosgobi/simpleServer/core/annotation/annotations/Configuration.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/br/com/luizgustavosgobi/simpleServer/core/annotation/annotations/Configuration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/br/com/luizgustavosgobi/simpleServer/core/annotation/AnnotationPriority.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/br/com/luizgustavosgobi/simpleServer/core/annotation/AnnotationPriority.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/br/com/luizgustavosgobi/simpleServer/core/annotation/annotations/AutoWired.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/br/com/luizgustavosgobi/simpleServer/core/annotation/annotations/AutoWired.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/br/com/luizgustavosgobi/simpleServer/core/annotation/annotations/Bean.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/br/com/luizgustavosgobi/simpleServer/core/annotation/annotations/Bean.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/br/com/luizgustavosgobi/simpleServer/core/annotation/annotations/EnableFilters.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/br/com/luizgustavosgobi/simpleServer/core/annotation/annotations/EnableFilters.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/src/main/java/br/com/luizgustavosgobi/simpleServer/core/context/ApplicationContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/br/com/luizgustavosgobi/simpleServer/core/context/ApplicationContext.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/br/com/luizgustavosgobi/simpleServer/core/converter/ByteToStringCodec.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/br/com/luizgustavosgobi/simpleServer/core/converter/ByteToStringCodec.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/br/com/luizgustavosgobi/simpleServer/core/converter/ChanelHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/br/com/luizgustavosgobi/simpleServer/core/converter/ChannelHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/br/com/luizgustavosgobi/simpleServer/core/converter/ChanelInboundHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/br/com/luizgustavosgobi/simpleServer/core/converter/ChannelInboundHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/br/com/luizgustavosgobi/simpleServer/core/converter/ChanelOutboundHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/br/com/luizgustavosgobi/simpleServer/core/converter/ChannelOutboundHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/br/com/luizgustavosgobi/simpleServer/core/converter/DataPipeline.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/br/com/luizgustavosgobi/simpleServer/core/converter/DataPipeline.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/br/com/luizgustavosgobi/simpleServer/core/handlers/ReadEventHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/br/com/luizgustavosgobi/simpleServer/core/handlers/ReadEventHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/http/src/main/java/br/com/luizgustavosgobi/simpleserver/http/HttpApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/http/src/main/java/br/com/luizgustavosgobi/simpleserver/http/HttpApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/http/src/main/java/br/com/luizgustavosgobi/simpleserver/http/HttpConnectionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/http/src/main/java/br/com/luizgustavosgobi/simpleserver/http/HttpConnectionHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/http/src/main/java/br/com/luizgustavosgobi/simpleserver/http/StringToHttpCoded.java" beforeDir="false" afterPath="$PROJECT_DIR$/http/src/main/java/br/com/luizgustavosgobi/simpleserver/http/StringToHttpCoded.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/http/src/main/java/br/com/luizgustavosgobi/simpleserver/http/annotations/Middleware.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/http/src/main/java/br/com/luizgustavosgobi/simpleserver/http/entities/BodyBuilder.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/http/src/main/java/br/com/luizgustavosgobi/simpleserver/http/entities/HeaderBuilder.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/http/src/main/java/br/com/luizgustavosgobi/simpleserver/http/entities/HttpBuilder.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/http/src/main/java/br/com/luizgustavosgobi/simpleserver/http/entities/HttpEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/http/src/main/java/br/com/luizgustavosgobi/simpleserver/http/entities/HttpEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/http/src/main/java/br/com/luizgustavosgobi/simpleserver/http/entities/HttpRequestBuilder.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/http/src/main/java/br/com/luizgustavosgobi/simpleserver/http/entities/HttpResponseBuilder.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/http/src/main/java/br/com/luizgustavosgobi/simpleserver/http/entities/RequestEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/http/src/main/java/br/com/luizgustavosgobi/simpleserver/http/entities/RequestEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/http/src/main/java/br/com/luizgustavosgobi/simpleserver/http/entities/ResponseEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/http/src/main/java/br/com/luizgustavosgobi/simpleserver/http/entities/ResponseEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/http/src/main/java/br/com/luizgustavosgobi/simpleserver/http/enums/HttpStatus.java" beforeDir="false" afterPath="$PROJECT_DIR$/http/src/main/java/br/com/luizgustavosgobi/simpleserver/http/enums/HttpStatus.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/http/src/main/java/br/com/luizgustavosgobi/simpleserver/http/parser/HttpParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/http/src/main/java/br/com/luizgustavosgobi/simpleserver/http/parser/HttpParser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/http/src/main/java/br/com/luizgustavosgobi/simpleserver/http/parser/components/HttpHeaders.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/http/src/main/java/br/com/luizgustavosgobi/simpleserver/http/parser/components/HttpLine.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/http/src/main/java/br/com/luizgustavosgobi/simpleserver/http/parser/components/HttpRequestLine.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/http/src/main/java/br/com/luizgustavosgobi/simpleserver/http/parser/components/HttpResponseLine.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/http/src/main/java/br/com/luizgustavosgobi/simpleserver/http/parser/components/URI.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/http/src/main/java/br/com/luizgustavosgobi/simpleserver/http/router/MiddlewareHandler.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/http/src/main/java/br/com/luizgustavosgobi/simpleserver/http/router/Router.java" beforeDir="false" afterPath="$PROJECT_DIR$/http/src/main/java/br/com/luizgustavosgobi/simpleserver/http/router/Router.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/br/com/luizgustavosgobi/simpleServer/core/context/ApplicationContextBootstrap.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/br/com/luizgustavosgobi/simpleServer/core/context/ApplicationContextBootstrap.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/br/com/luizgustavosgobi/simpleServer/core/context/BeanDefinition.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/br/com/luizgustavosgobi/simpleServer/core/context/BeanDefinition.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/br/com/luizgustavosgobi/simpleServer/core/context/BeanDefinitionBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/br/com/luizgustavosgobi/simpleServer/core/context/BeanDefinitionBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/br/com/luizgustavosgobi/simpleServer/core/handlers/WriteEventHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/br/com/luizgustavosgobi/simpleServer/core/handlers/WriteEventHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/http/src/main/java/br/com/luizgustavosgobi/simpleserver/http/annotations/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/http/src/main/java/br/com/luizgustavosgobi/simpleserver/http/annotations/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/http/src/main/java/br/com/luizgustavosgobi/simpleserver/http/annotations/PostMapping.java" beforeDir="false" afterPath="$PROJECT_DIR$/http/src/main/java/br/com/luizgustavosgobi/simpleserver/http/annotations/PostMapping.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/http/src/main/java/br/com/luizgustavosgobi/simpleserver/http/annotations/RequestMapping.java" beforeDir="false" afterPath="$PROJECT_DIR$/http/src/main/java/br/com/luizgustavosgobi/simpleserver/http/annotations/RequestMapping.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/http/src/main/java/br/com/luizgustavosgobi/simpleserver/http/filters/impl/LoggingFilter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/luizgustavosgobi/testes/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/luizgustavosgobi/testes/MainController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/luizgustavosgobi/testes/MainService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/luizgustavosgobi/testes/MainService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/luizgustavosgobi/testes/WebSecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/luizgustavosgobi/testes/WebSecurityConfig.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -88,7 +46,7 @@
     </selectedModels>
   </component>
   <component name="EmbeddingIndexingInfo">
-    <option name="cachedIndexableFilesCount" value="145" />
+    <option name="cachedIndexableFilesCount" value="148" />
   </component>
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
@@ -185,7 +143,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "Application.Main.executor": "Profiler#4",
+    "Application.Main.executor": "Profiler#1",
     "Application.test.Main.executor": "Profiler#1",
     "Downloaded.Files.Path.Enabled": "false",
     "Gradle.Build Simple-Server.executor": "Run",
@@ -443,9 +401,9 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Main" />
         <item itemvalue="Gradle.SimpleServer [build]" />
         <item itemvalue="Gradle.SimpleServer [clean]" />
-        <item itemvalue="Application.Main" />
         <item itemvalue="Gradle.SimpleServer [assemble]" />
       </list>
     </recent_temporary>
@@ -567,7 +525,8 @@
       <workItem from="1770831145040" duration="8912000" />
       <workItem from="1770918380054" duration="1842000" />
       <workItem from="1770996764335" duration="11278000" />
-      <workItem from="1771024766751" duration="17432000" />
+      <workItem from="1771024766751" duration="17837000" />
+      <workItem from="1771091577597" duration="10082000" />
     </task>
     <task id="LOCAL-00001" summary="Big refactor on the server core logic">
       <option name="closed" value="true" />
@@ -593,7 +552,15 @@
       <option name="project" value="LOCAL" />
       <updated>1770999382381</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="A big Refactor on HTTP server! &#10;Create a Filter System!">
+      <option name="closed" value="true" />
+      <created>1771043946099</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1771043946099</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -603,7 +570,8 @@
     <MESSAGE value="Big refactor on the server core logic" />
     <MESSAGE value="Create a more powerful socket data writing system and add a DataPipeline for encode and decode data after reading and before writing to an socket" />
     <MESSAGE value="Refactor HTTP handling and enhance request/response processing&#10;Need to refactor the old Router system and the Request Mapping logic" />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactor HTTP handling and enhance request/response processing&#10;Need to refactor the old Router system and the Request Mapping logic" />
+    <MESSAGE value="A big Refactor on HTTP server! &#10;Create a Filter System!" />
+    <option name="LAST_COMMIT_MESSAGE" value="A big Refactor on HTTP server! &#10;Create a Filter System!" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>

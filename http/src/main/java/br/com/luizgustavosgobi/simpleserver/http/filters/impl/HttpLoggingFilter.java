@@ -1,19 +1,19 @@
 package br.com.luizgustavosgobi.simpleServer.http.filters.impl;
 
-import br.com.luizgustavosgobi.simpleServer.core.filters.Filter;
 import br.com.luizgustavosgobi.simpleServer.core.filters.FilterChain;
 import br.com.luizgustavosgobi.simpleServer.core.filters.FilterContext;
+import br.com.luizgustavosgobi.simpleServer.core.filters.impl.LoggingFilter;
 import br.com.luizgustavosgobi.simpleServer.core.logger.Logger;
 import br.com.luizgustavosgobi.simpleServer.http.filters.HttpFilterContext;
 
-public class LoggingFilter implements Filter {
+public class HttpLoggingFilter extends LoggingFilter {
     private final String prefix;
 
-    public LoggingFilter(String prefix) {
+    public HttpLoggingFilter(String prefix) {
         this.prefix = prefix;
     }
 
-    public LoggingFilter() {
+    public HttpLoggingFilter() {
         this("Filter");
     }
 

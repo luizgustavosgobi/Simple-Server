@@ -53,7 +53,7 @@ public @interface RequestMapping {
                 path = "/";
 
             Method method = (Method) element;
-            Router router = (Router) applicationContext.getBean(Router.class).getInstance();
+            Router router = applicationContext.getInstance(Router.class);
             router.add(httpMethod, path, createHandler(method, applicationContext));
         }
 
@@ -63,7 +63,6 @@ public @interface RequestMapping {
                 Validator validator = applicationContext.getInstance(Validator.class);
 
                 List<Object> args = new LinkedList<>();
-
                 for (Parameter parameter : method.getParameters()) {
                     Object value = null;
 

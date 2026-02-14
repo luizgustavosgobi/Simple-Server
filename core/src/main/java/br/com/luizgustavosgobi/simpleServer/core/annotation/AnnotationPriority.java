@@ -7,17 +7,14 @@ public enum AnnotationPriority {
     /** Escaneamento de componentes */
     COMPONENT_SCAN(100),
 
-    /** Definição de beans */
-    BEAN_DEFINITION(200),
-
     /** Criação de beans */
-    BEAN_CREATION(300),
+    BEAN_CREATION(200),
 
     /** Injeção de dependências */
-    DEPENDENCY_INJECTION(400),
+    DEPENDENCY_INJECTION(300),
 
     /** Métodos @PreConstruct */
-    PRE_CONSTRUCT(500),
+    PRE_CONSTRUCT(400),
 
     /** Métodos @PostConstruct */
     POST_CONSTRUCT(500),

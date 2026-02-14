@@ -34,7 +34,7 @@ public @interface PostMapping {
             String path = postMapping.path();
             if (path.isEmpty()) { path = "/"; }
 
-            Router router = (Router) applicationContext.getBean(Router.class).getInstance();
+            Router router = applicationContext.getInstance(Router.class);
             router.add(HttpMethod.POST, path, RequestMapping.Handler.createHandler((Method) element, applicationContext));
         }
     }

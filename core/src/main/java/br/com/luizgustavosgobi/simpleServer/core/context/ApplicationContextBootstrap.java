@@ -30,11 +30,11 @@ public class ApplicationContextBootstrap {
 
     private void registerCoreBeans() {
         beanRegistry.register(
-            new BeanDefinition("LOGGER", Logger.class, BeanScope.SINGLETON, false, logger)
+            new BeanDefinition("LOGGER", Logger.class, BeanScope.SINGLETON, logger)
         );
 
         beanRegistry.register(
-            new BeanDefinition("ANNOTATION_CONTEXT", AnnotationContext.class, BeanScope.SINGLETON, false, annotationRegistry)
+            new BeanDefinition("ANNOTATION_CONTEXT", AnnotationContext.class, BeanScope.SINGLETON, annotationRegistry)
         );
     }
 
