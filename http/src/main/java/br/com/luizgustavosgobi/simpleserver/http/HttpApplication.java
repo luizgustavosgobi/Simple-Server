@@ -7,7 +7,8 @@ import br.com.luizgustavosgobi.simpleServer.core.context.ApplicationContext;
 import br.com.luizgustavosgobi.simpleServer.core.context.BeanDefinition;
 import br.com.luizgustavosgobi.simpleServer.core.context.BeanScope;
 import br.com.luizgustavosgobi.simpleServer.core.converter.ByteToStringCodec;
-import br.com.luizgustavosgobi.simpleServer.core.converter.DataPipeline;
+import br.com.luizgustavosgobi.simpleServer.core.converter.ConverterPipeline;
+import br.com.luizgustavosgobi.simpleServer.core.converter.ConverterPipelineProxy;
 import br.com.luizgustavosgobi.simpleServer.core.logger.Logger;
 import br.com.luizgustavosgobi.simpleServer.http.router.Router;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -25,9 +26,12 @@ public class HttpApplication {
         ClientConnectionTable connTable = new ClientConnectionTable();
         ApplicationContext context = new ApplicationContext();
 
-        DataPipeline pipeline =  new DataPipeline();
+        ConverterPipeline pipeline = new ConverterPipeline();
         pipeline.addLast(new ByteToStringCodec())
                 .addLast(new StringToHttpCoded());
+
+        ConverterPipelineProxy pipelineProxy =  new ConverterPipelineProxy();
+        pipelineProxy.addPipeline(pipeline);
 
         HttpConnectionHandler handler = new HttpConnectionHandler(router);
 
@@ -36,7 +40,7 @@ public class HttpApplication {
         context.register(new BeanDefinition("OBJECT_VALIDATOR", Validator.class, BeanScope.SINGLETON, Validation.buildDefaultValidatorFactory().getValidator()));
 
         try {
-            Server server = ServerFactory.create(mainClass, port, handler, connTable, context, pipeline);
+            Server server = ServerFactory.create(mainClass, port, handler, connTable, context, pipelineProxy);
 
             server.start();
             return server;

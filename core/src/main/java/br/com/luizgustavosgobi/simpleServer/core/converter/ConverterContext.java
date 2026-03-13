@@ -1,15 +1,16 @@
 package br.com.luizgustavosgobi.simpleServer.core.converter;
 
-import java.nio.channels.SocketChannel;
+import br.com.luizgustavosgobi.simpleServer.core.connection.Client;
+
 import java.util.HashMap;
 import java.util.Map;
 
-public class DataPipelineContext {
-    private final SocketChannel channel;
+public class ConverterContext {
+    private final Client client;
     private final Map<String, Object> attributes;
 
-    public DataPipelineContext(SocketChannel channel) {
-        this.channel = channel;
+    public ConverterContext(Client client) {
+        this.client = client;
         this.attributes = new HashMap<>();
     }
 
@@ -21,8 +22,8 @@ public class DataPipelineContext {
         return (T) attributes.get(key);
     }
 
-    public SocketChannel getChannel() {
-        return channel;
+    public Client getClient() {
+        return client;
     }
 
     public void next(Object value) {

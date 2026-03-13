@@ -3,19 +3,23 @@ package br.com.luizgustavosgobi.simpleServer.core.converter;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DataPipeline {
+public class ConverterPipeline {
     private final List<ChannelHandler> handlers;
 
-    public DataPipeline() {
+    public ConverterPipeline() {
         this.handlers = new ArrayList<>();
     }
 
-    public DataPipeline addLast(ChannelHandler handler) {
+    public ConverterPipeline addLast(ChannelHandler handler) {
         handlers.addLast(handler);
         return this;
     }
 
-    public Object fireChannelRead(Object msg, DataPipelineContext context) throws Exception {
+    /**
+     * Processo de transformar o dado vindo do client para um outro dado!
+     * ex: byte[] -> String
+     */
+    public Object decode(Object msg, ConverterContext context) throws Exception {
         Object currentMsg = msg;
 
         for (ChannelHandler handler : handlers) {
@@ -26,7 +30,11 @@ public class DataPipeline {
         return currentMsg;
     }
 
-    public Object fireChannelWrite(Object msg, DataPipelineContext context) throws Exception {
+    /**
+     * Processo de transformar o dado que irá ser mandado para o client!
+     * ex: String -> byte[]
+     */
+    public Object encode(Object msg, ConverterContext context) throws Exception {
         Object currentMsg = msg;
 
         for (int i = handlers.size() - 1; i >= 0; i--) {

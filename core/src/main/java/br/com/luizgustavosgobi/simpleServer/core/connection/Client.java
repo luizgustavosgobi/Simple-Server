@@ -1,28 +1,28 @@
 package br.com.luizgustavosgobi.simpleServer.core.connection;
 
-import br.com.luizgustavosgobi.simpleServer.core.converter.DataPipelineContext;
 import br.com.luizgustavosgobi.simpleServer.core.io.WriteQueue;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.nio.channels.SelectionKey;
 import java.nio.channels.SocketChannel;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class Client extends WriteQueue implements AutoCloseable {
     protected final SocketChannel channel;
     protected final InetSocketAddress address;
     protected final InetSocketAddress localAddress;
 
-    protected final DataPipelineContext dataPipelineContext;
-
     private SelectionKey selectionKey;
+
+    protected final Map<String, Object> attributes;
 
     public Client(SocketChannel channel) throws IOException {
         this.channel = channel;
         this.address = (InetSocketAddress) channel.getRemoteAddress();
         this.localAddress = (InetSocketAddress) channel.getLocalAddress();
-
-        this.dataPipelineContext = new DataPipelineContext(channel);
+        this.attributes = new ConcurrentHashMap<>();
     }
 
     public boolean isConnected() {
@@ -38,12 +38,12 @@ public class Client extends WriteQueue implements AutoCloseable {
     }
 
     public boolean shouldClose() {
-        Object shouldClose = dataPipelineContext.getAttribute("shouldClose");
+        Object shouldClose = attributes.get("shouldClose");
         if (shouldClose == null) return false;
         return (boolean) shouldClose && !hasWrites();
     }
     public void shouldClose(boolean value) {
-        dataPipelineContext.setAttribute("shouldClose", value);
+        attributes.put("shouldClose", value);
     }
 
     public SelectionKey getSelectionKey() {
@@ -58,15 +58,16 @@ public class Client extends WriteQueue implements AutoCloseable {
     public InetSocketAddress getLocalAddress() {
         return localAddress;
     }
-    public DataPipelineContext getDataPipelineContext() {
-        return dataPipelineContext;
+    public Map<String, Object> getAttributes() {
+        return attributes;
     }
 
     public void setAttribute(String name, Object value) {
-        dataPipelineContext.setAttribute(name, value);
+        attributes.put(name, value);
     }
+    @SuppressWarnings("unchecked")
     public <T> T getAttribute(String name) {
-        return dataPipelineContext.getAttribute(name);
+        return (T) attributes.get(name);
     }
 
     public void setSelectionKey(SelectionKey selectionKey) {

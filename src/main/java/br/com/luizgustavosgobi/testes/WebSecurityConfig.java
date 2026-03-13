@@ -1,13 +1,12 @@
 package br.com.luizgustavosgobi.testes;
 
 import br.com.luizgustavosgobi.simpleServer.core.filters.FilterOrder;
-import br.com.luizgustavosgobi.simpleServer.http.annotations.EnableWebFilters;
 import br.com.luizgustavosgobi.simpleServer.http.filters.HttpFilterBuilder;
 import br.com.luizgustavosgobi.simpleServer.http.filters.HttpFilterChain;
 import br.com.luizgustavosgobi.simpleServer.http.filters.impl.CorsFilter;
 import br.com.luizgustavosgobi.simpleServer.http.filters.impl.HttpLoggingFilter;
 
-@EnableWebFilters
+//@EnableWebFilters
 public class WebSecurityConfig {
 
     public HttpFilterChain apiFilterChain() {

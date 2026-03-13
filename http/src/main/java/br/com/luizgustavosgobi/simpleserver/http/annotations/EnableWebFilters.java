@@ -35,10 +35,7 @@ public @interface EnableWebFilters {
         @Override
         public void process(AnnotatedElement element, Annotation annotation, BeanRegistry applicationContext) throws Exception {
             Class<?> configClass = (Class<?>) element;
-
             Object configInstance = configClass.getConstructor().newInstance();
-
-            //Object configInstance = applicationContext.getInstance(configClass);
 
             List<HttpFilterChain> chains = new ArrayList<>();
             for (Method method : configClass.getDeclaredMethods()) {
@@ -47,9 +44,7 @@ public @interface EnableWebFilters {
 
                     try {
                         HttpFilterChain chain = (HttpFilterChain) method.invoke(configInstance);
-                        if (chain != null) {
-                            chains.add(chain);
-                        }
+                        if (chain != null) chains.add(chain);
                     } catch (Exception e) {
                         Logger.Error(this, "Failed to invoke filter chain method: " + method.getName() + " - " + e.getMessage());
                     }

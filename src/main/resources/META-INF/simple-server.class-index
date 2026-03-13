@@ -1,0 +1,24 @@
+# Classes used by native-image fallback scanner
+# App classes
+br.com.luizgustavosgobi.testes.ConnHandler
+br.com.luizgustavosgobi.testes.DataConverters
+br.com.luizgustavosgobi.testes.Filters
+br.com.luizgustavosgobi.testes.Main
+br.com.luizgustavosgobi.testes.MainController
+br.com.luizgustavosgobi.testes.MainService
+br.com.luizgustavosgobi.testes.WebSecurityConfig
+
+# Core annotation processors
+br.com.luizgustavosgobi.simpleServer.core.annotation.annotations.AutoWired$AutoWiredHandler
+br.com.luizgustavosgobi.simpleServer.core.annotation.annotations.Bean$BeanHandler
+br.com.luizgustavosgobi.simpleServer.core.annotation.annotations.Configuration$ConfigurationHandler
+br.com.luizgustavosgobi.simpleServer.core.annotation.annotations.EnableDataConverters$EnableDataConvertersHandler
+br.com.luizgustavosgobi.simpleServer.core.annotation.annotations.EnableFilters$EnableFiltersHandler
+
+# HTTP annotation processors
+br.com.luizgustavosgobi.simpleServer.http.annotations.Controller$Handler
+br.com.luizgustavosgobi.simpleServer.http.annotations.EnableWebFilters$Handler
+br.com.luizgustavosgobi.simpleServer.http.annotations.GetMapping$Handler
+br.com.luizgustavosgobi.simpleServer.http.annotations.PostMapping$Handler
+br.com.luizgustavosgobi.simpleServer.http.annotations.RequestMapping$Handler
+

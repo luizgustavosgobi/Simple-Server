@@ -2,10 +2,10 @@ package br.com.luizgustavosgobi.simpleServer.core.converter;
 
 public abstract class ChannelOutboundHandler implements ChannelHandler {
     @Override
-    public Object channelRead(DataPipelineContext ctx, Object msg) throws Exception {
+    public Object channelRead(ConverterContext ctx, Object msg) throws Exception {
         return msg;
     }
 
     @Override
-    public abstract Object channelWrite(DataPipelineContext ctx, Object msg) throws Exception;
+    public abstract Object channelWrite(ConverterContext ctx, Object msg) throws Exception;
 }

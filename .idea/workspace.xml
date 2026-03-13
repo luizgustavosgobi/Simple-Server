@@ -4,25 +4,37 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d97d083f-3a98-435e-a75a-f94708f8d527" name="Changes" comment="A big Refactor on HTTP server! &#10;Create a Filter System!">
-      <change afterPath="$PROJECT_DIR$/http/src/main/java/br/com/luizgustavosgobi/simpleserver/http/filters/impl/HttpLoggingFilter.java" afterDir="false" />
+    <list default="true" id="d97d083f-3a98-435e-a75a-f94708f8d527" name="Changes" comment="Refactor BeanDefinition and enhance dependency injection with constructor support">
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/data_source_mapping.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/main/java/br/com/luizgustavosgobi/simpleServer/core/annotation/annotations/EnableDataConverters.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/main/java/br/com/luizgustavosgobi/simpleServer/core/converter/ConverterPipelineProxy.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/br/com/luizgustavosgobi/testes/DataConverters.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/br/com/luizgustavosgobi/testes/Filters.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/META-INF/simple-server.class-index" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/br/com/luizgustavosgobi/simpleServer/core/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/br/com/luizgustavosgobi/simpleServer/core/Server.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/src/main/java/br/com/luizgustavosgobi/simpleServer/core/ServerFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/br/com/luizgustavosgobi/simpleServer/core/ServerFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/br/com/luizgustavosgobi/simpleServer/core/annotation/AnnotationPriority.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/br/com/luizgustavosgobi/simpleServer/core/annotation/AnnotationPriority.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/br/com/luizgustavosgobi/simpleServer/core/annotation/annotations/AutoWired.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/br/com/luizgustavosgobi/simpleServer/core/annotation/annotations/AutoWired.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/br/com/luizgustavosgobi/simpleServer/core/annotation/annotations/Bean.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/br/com/luizgustavosgobi/simpleServer/core/annotation/annotations/Bean.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/src/main/java/br/com/luizgustavosgobi/simpleServer/core/annotation/annotations/EnableFilters.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/br/com/luizgustavosgobi/simpleServer/core/annotation/annotations/EnableFilters.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/br/com/luizgustavosgobi/simpleServer/core/context/ApplicationContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/br/com/luizgustavosgobi/simpleServer/core/context/ApplicationContext.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/br/com/luizgustavosgobi/simpleServer/core/context/ApplicationContextBootstrap.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/br/com/luizgustavosgobi/simpleServer/core/context/ApplicationContextBootstrap.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/br/com/luizgustavosgobi/simpleServer/core/context/BeanDefinition.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/br/com/luizgustavosgobi/simpleServer/core/context/BeanDefinition.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/br/com/luizgustavosgobi/simpleServer/core/context/BeanDefinitionBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/br/com/luizgustavosgobi/simpleServer/core/context/BeanDefinitionBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/br/com/luizgustavosgobi/simpleServer/core/connection/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/br/com/luizgustavosgobi/simpleServer/core/connection/Client.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/br/com/luizgustavosgobi/simpleServer/core/converter/ByteToStringCodec.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/br/com/luizgustavosgobi/simpleServer/core/converter/ByteToStringCodec.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/br/com/luizgustavosgobi/simpleServer/core/converter/ChannelHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/br/com/luizgustavosgobi/simpleServer/core/converter/ChannelHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/br/com/luizgustavosgobi/simpleServer/core/converter/ChannelInboundHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/br/com/luizgustavosgobi/simpleServer/core/converter/ChannelInboundHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/br/com/luizgustavosgobi/simpleServer/core/converter/ChannelOutboundHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/br/com/luizgustavosgobi/simpleServer/core/converter/ChannelOutboundHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/br/com/luizgustavosgobi/simpleServer/core/converter/DataPipeline.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/br/com/luizgustavosgobi/simpleServer/core/converter/ConverterPipeline.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/br/com/luizgustavosgobi/simpleServer/core/converter/DataPipelineContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/br/com/luizgustavosgobi/simpleServer/core/converter/ConverterContext.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/br/com/luizgustavosgobi/simpleServer/core/handlers/ReadEventHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/br/com/luizgustavosgobi/simpleServer/core/handlers/ReadEventHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/src/main/java/br/com/luizgustavosgobi/simpleServer/core/handlers/WriteEventHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/br/com/luizgustavosgobi/simpleServer/core/handlers/WriteEventHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/http/src/main/java/br/com/luizgustavosgobi/simpleserver/http/annotations/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/http/src/main/java/br/com/luizgustavosgobi/simpleserver/http/annotations/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/http/src/main/java/br/com/luizgustavosgobi/simpleserver/http/annotations/PostMapping.java" beforeDir="false" afterPath="$PROJECT_DIR$/http/src/main/java/br/com/luizgustavosgobi/simpleserver/http/annotations/PostMapping.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/http/src/main/java/br/com/luizgustavosgobi/simpleserver/http/annotations/RequestMapping.java" beforeDir="false" afterPath="$PROJECT_DIR$/http/src/main/java/br/com/luizgustavosgobi/simpleserver/http/annotations/RequestMapping.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/http/src/main/java/br/com/luizgustavosgobi/simpleserver/http/filters/impl/LoggingFilter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/br/com/luizgustavosgobi/simpleServer/core/io/SocketStream.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/br/com/luizgustavosgobi/simpleServer/core/io/SocketStream.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/br/com/luizgustavosgobi/simpleServer/core/scanner/ClassPathScanner.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/br/com/luizgustavosgobi/simpleServer/core/scanner/ClassPathScanner.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/http/src/main/java/br/com/luizgustavosgobi/simpleserver/http/HttpApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/http/src/main/java/br/com/luizgustavosgobi/simpleserver/http/HttpApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/http/src/main/java/br/com/luizgustavosgobi/simpleserver/http/StringToHttpCoded.java" beforeDir="false" afterPath="$PROJECT_DIR$/http/src/main/java/br/com/luizgustavosgobi/simpleserver/http/StringToHttpCoded.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/http/src/main/java/br/com/luizgustavosgobi/simpleserver/http/annotations/EnableWebFilters.java" beforeDir="false" afterPath="$PROJECT_DIR$/http/src/main/java/br/com/luizgustavosgobi/simpleserver/http/annotations/EnableWebFilters.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/luizgustavosgobi/testes/ConnHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/luizgustavosgobi/testes/ConnHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/luizgustavosgobi/testes/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/luizgustavosgobi/testes/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/br/com/luizgustavosgobi/testes/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/luizgustavosgobi/testes/MainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/luizgustavosgobi/testes/MainService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/luizgustavosgobi/testes/MainService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/br/com/luizgustavosgobi/testes/WebSecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/luizgustavosgobi/testes/WebSecurityConfig.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -41,12 +53,12 @@
   <component name="CopilotUserSelectedModel">
     <selectedModels>
       <entry key="edit-panel" value="GPT-5 mini" />
-      <entry key="chat-panel" value="Claude Sonnet 4.5" />
-      <entry key="agent-panel" value="Claude Sonnet 4.5" />
+      <entry key="chat-panel" value="Qwen: Qwen3 Coder 480B A35B (free)#(OpenRouter)" />
+      <entry key="agent-panel" value="Qwen: Qwen3 Coder 480B A35B (free)#(OpenRouter)" />
     </selectedModels>
   </component>
   <component name="EmbeddingIndexingInfo">
-    <option name="cachedIndexableFilesCount" value="148" />
+    <option name="cachedIndexableFilesCount" value="156" />
   </component>
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
@@ -90,11 +102,11 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="AnnotationType" />
         <option value="Enum" />
         <option value="Record" />
         <option value="Exception" />
         <option value="Interface" />
+        <option value="AnnotationType" />
         <option value="Class" />
       </list>
     </option>
@@ -123,6 +135,10 @@
   <component name="KotlinCodeInsightWorkspaceSettings">
     <option name="optimizeImportsOnTheFly" value="true" />
   </component>
+  <component name="KubernetesApiPersistence">{}</component>
+  <component name="KubernetesApiProvider">{
+  &quot;isMigrated&quot;: true
+}</component>
   <component name="McpProjectServerCommands">
     <commands />
     <urls />
@@ -150,6 +166,10 @@
     "Gradle.Build SimpleServer.executor": "Run",
     "Gradle.Download Sources.executor": "Run",
     "Gradle.Simple-Server [:br.com.luizgustavosgobi.testes.Main.main()].executor": "Run",
+    "Gradle.Simple-Server [compileJava].executor": "Run",
+    "Gradle.Simple-Server [nativeCompile].executor": "Run",
+    "Gradle.Simple-Server [nativeRun].executor": "Run",
+    "Gradle.Simple-Server [shadowJar].executor": "Run",
     "Gradle.SimpleServer [:br.com.luizgustavosgobi.simpleServer.Main.main()].executor": "Run",
     "Gradle.SimpleServer [:test.Main.main()].executor": "Run",
     "Gradle.SimpleServer [:test.MyServer.main()].executor": "Run",
@@ -182,9 +202,14 @@
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.33165407",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "settings.editor.selected.configurable": "advanced.settings",
     "to.speed.mode.migration.done": "true",
     "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "mongo"
+    ]
   }
 }]]></component>
   <component name="RecentsManager">
@@ -209,44 +234,8 @@
       <recent name="br.com.luizgustavosgobi.simpleServer.logger.enums" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Main">
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="br.com.luizgustavosgobi.testes.Main" />
-      <module name="SimpleServer.main" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="br.com.luizgustavosgobi.testes.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Teste" type="Application" factoryName="Application" temporary="true">
-      <option name="MAIN_CLASS_NAME" value="test.Main" />
-      <module name="SimpleServer.main" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="test.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <extension name="net.ashald.envfile">
-        <option name="IS_ENABLED" value="false" />
-        <option name="IS_SUBST" value="false" />
-        <option name="IS_PATH_MACRO_SUPPORTED" value="false" />
-        <option name="IS_IGNORE_MISSING_FILES" value="false" />
-        <option name="IS_ENABLE_EXPERIMENTAL_INTEGRATIONS" value="false" />
-        <ENTRIES>
-          <ENTRY IS_ENABLED="true" PARSER="runconfig" IS_EXECUTABLE="false" />
-        </ENTRIES>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="SimpleServer [assemble]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+  <component name="RunManager" selected="Gradle.Simple-Server [nativeCompile]">
+    <configuration name="Simple-Server [nativeCompile]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -257,7 +246,7 @@
         </option>
         <option name="taskNames">
           <list>
-            <option value="assemble" />
+            <option value="nativeCompile" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -271,7 +260,7 @@
       <GradleCoverageDisabled>false</GradleCoverageDisabled>
       <method v="2" />
     </configuration>
-    <configuration name="SimpleServer [assemble]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="Simple-Server [nativeRun]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -282,15 +271,43 @@
         </option>
         <option name="taskNames">
           <list>
-            <option value="assemble" />
+            <option value="nativeRun" />
           </list>
         </option>
         <option name="vmOptions" />
       </ExternalSystemSettings>
       <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
       <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <ExternalSystemDebugDisabled>false</ExternalSystemDebugDisabled>
       <DebugAllEnabled>false</DebugAllEnabled>
       <RunAsTest>false</RunAsTest>
+      <GradleProfilingDisabled>false</GradleProfilingDisabled>
+      <GradleCoverageDisabled>false</GradleCoverageDisabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="Simple-Server [shadowJar]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="shadowJar" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <ExternalSystemDebugDisabled>false</ExternalSystemDebugDisabled>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>false</RunAsTest>
+      <GradleProfilingDisabled>false</GradleProfilingDisabled>
+      <GradleCoverageDisabled>false</GradleCoverageDisabled>
       <method v="2" />
     </configuration>
     <configuration name="SimpleServer [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
@@ -393,18 +410,19 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Application.Teste" />
-      <item itemvalue="Application.Main" />
-      <item itemvalue="Gradle.SimpleServer [assemble]" />
+      <item itemvalue="Gradle.Simple-Server [nativeCompile]" />
+      <item itemvalue="Gradle.Simple-Server [nativeRun]" />
+      <item itemvalue="Gradle.Simple-Server [shadowJar]" />
       <item itemvalue="Gradle.SimpleServer [build]" />
       <item itemvalue="Gradle.SimpleServer [clean]" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Main" />
+        <item itemvalue="Gradle.Simple-Server [nativeCompile]" />
+        <item itemvalue="Gradle.Simple-Server [nativeRun]" />
         <item itemvalue="Gradle.SimpleServer [build]" />
         <item itemvalue="Gradle.SimpleServer [clean]" />
-        <item itemvalue="Gradle.SimpleServer [assemble]" />
+        <item itemvalue="Gradle.Simple-Server [shadowJar]" />
       </list>
     </recent_temporary>
   </component>
@@ -526,7 +544,14 @@
       <workItem from="1770918380054" duration="1842000" />
       <workItem from="1770996764335" duration="11278000" />
       <workItem from="1771024766751" duration="17837000" />
-      <workItem from="1771091577597" duration="10082000" />
+      <workItem from="1771091577597" duration="10762000" />
+      <workItem from="1771551146309" duration="9748000" />
+      <workItem from="1771621810563" duration="159000" />
+      <workItem from="1771637423518" duration="481000" />
+      <workItem from="1771638592846" duration="765000" />
+      <workItem from="1771863167250" duration="833000" />
+      <workItem from="1772070660994" duration="2005000" />
+      <workItem from="1773380210677" duration="2019000" />
     </task>
     <task id="LOCAL-00001" summary="Big refactor on the server core logic">
       <option name="closed" value="true" />
@@ -560,7 +585,15 @@
       <option name="project" value="LOCAL" />
       <updated>1771043946099</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Refactor BeanDefinition and enhance dependency injection with constructor support">
+      <option name="closed" value="true" />
+      <created>1771102274532</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1771102274532</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -571,7 +604,8 @@
     <MESSAGE value="Create a more powerful socket data writing system and add a DataPipeline for encode and decode data after reading and before writing to an socket" />
     <MESSAGE value="Refactor HTTP handling and enhance request/response processing&#10;Need to refactor the old Router system and the Request Mapping logic" />
     <MESSAGE value="A big Refactor on HTTP server! &#10;Create a Filter System!" />
-    <option name="LAST_COMMIT_MESSAGE" value="A big Refactor on HTTP server! &#10;Create a Filter System!" />
+    <MESSAGE value="Refactor BeanDefinition and enhance dependency injection with constructor support" />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactor BeanDefinition and enhance dependency injection with constructor support" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>

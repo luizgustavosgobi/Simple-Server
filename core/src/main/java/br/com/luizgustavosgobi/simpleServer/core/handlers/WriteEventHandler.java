@@ -27,7 +27,7 @@ public class WriteEventHandler {
                 Object data = client.pollWrite();
                 if (data == null) break;
 
-                socketStream.write(client.getChannel(), client.getDataPipelineContext(), data);
+                socketStream.write(client, data);
             }
 
             if (!client.hasWrites()) {

@@ -19,9 +19,10 @@ public class ReadEventHandler {
         this.filterChainProxy = filterChainProxy;
     }
 
+    // TODO: Pensar em adotar uma abordagem de ler os dados da thread -> precisa cancelar a chave, e depois do catch, voltá-la... Fiz, mais na época não teve grandes mudanças
     public void handle(Client client) throws Exception {
-        Object data = socketStream.read(client.getChannel(), client.getDataPipelineContext());
-
+        Object data = socketStream.read(client);
+        //client.removeKeyInterestIn(SelectionKey.OP_READ);
         threadManager.submitToIO(() -> {
             try {
                 if (filterChainProxy != null) {
@@ -34,6 +35,7 @@ public class ReadEventHandler {
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
+            //client.addKeyInterestIn(SelectionKey.OP_READ);
         });
     }
 }

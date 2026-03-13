@@ -1,5 +1,6 @@
 plugins {
     id 'java'
+    id 'edu.sc.seis.launch4j' version '3.0.6'
 }
 
 group = 'br.com.luizgustavosgobi.simpleServer'
@@ -19,4 +20,33 @@ dependencies {
 
 test {
     useJUnitPlatform()
+}
+
+jar {
+    manifest {
+        attributes(
+                'Main-Class': 'br.com.luizgustavosgobi.testes.Main'
+        )
+    }
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+}
+
+launch4j {
+    mainClassName = 'br.com.luizgustavosgobi.testes.Main'
+    outfile = 'SimpleServer.exe'
+    headerType = 'console'
+    jarTask = tasks.jar
+    copyConfigurable = []
+    jreMinVersion = '11'
+}
+
+tasks.named('createExe') {
+    dependsOn tasks.jar
+}
+
+tasks.named('assemble') {
+    dependsOn tasks.named('createExe')
 }

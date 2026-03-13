@@ -4,7 +4,7 @@ import br.com.luizgustavosgobi.simpleServer.core.connection.Client;
 import br.com.luizgustavosgobi.simpleServer.core.connection.ConnectionHandler;
 import br.com.luizgustavosgobi.simpleServer.core.connection.ConnectionTable;
 import br.com.luizgustavosgobi.simpleServer.core.context.BeanRegistry;
-import br.com.luizgustavosgobi.simpleServer.core.converter.DataPipeline;
+import br.com.luizgustavosgobi.simpleServer.core.converter.ConverterPipelineProxy;
 import br.com.luizgustavosgobi.simpleServer.core.filters.FilterChainProxy;
 import br.com.luizgustavosgobi.simpleServer.core.handlers.AcceptEventHandler;
 import br.com.luizgustavosgobi.simpleServer.core.handlers.CloseEventHandler;
@@ -38,7 +38,7 @@ public class Server implements ServerPort {
     private final CloseEventHandler closeHandler;
 
     private final SocketStream socketStream;
-    private final DataPipeline dataPipeline;
+    private final ConverterPipelineProxy converterPipelineProxy;
     private final FilterChainProxy filterChainProxy;
 
     private volatile boolean running = false;
@@ -46,7 +46,7 @@ public class Server implements ServerPort {
 
     public Server(int port, boolean blocking, ConnectionTable connectionTable, ConnectionHandler connectionHandler,
                   ThreadManager threadManager, BeanRegistry context, Logger logger,
-                  DataPipeline dataPipeline, FilterChainProxy filterChainProxy) throws IOException {
+                  ConverterPipelineProxy converterPipelineProxy, FilterChainProxy filterChainProxy) throws IOException {
 
         this.port = port;
         this.isBlockingIo = blocking;
@@ -55,8 +55,8 @@ public class Server implements ServerPort {
         this.connectionHandler = connectionHandler;
         this.context = context;
         this.logger = logger;
-        this.dataPipeline = dataPipeline;
-        this.socketStream = new SocketStream(dataPipeline);
+        this.converterPipelineProxy = converterPipelineProxy;
+        this.socketStream = new SocketStream(converterPipelineProxy);
         this.filterChainProxy = filterChainProxy;
 
         this.serverChannel = ServerSocketChannel.open();
@@ -73,9 +73,9 @@ public class Server implements ServerPort {
     }
 
     public Server(int port, boolean blocking, ConnectionTable connectionTable, ConnectionHandler connectionHandler,
-                  BeanRegistry context, Logger logger, DataPipeline dataPipeline) throws IOException {
+                  BeanRegistry context, Logger logger, ConverterPipelineProxy converterPipelineProxy) throws IOException {
 
-        this(port, blocking, connectionTable, connectionHandler, new ThreadManager(), context, logger, dataPipeline, null);
+        this(port, blocking, connectionTable, connectionHandler, new ThreadManager(), context, logger, converterPipelineProxy, null);
     }
 
 

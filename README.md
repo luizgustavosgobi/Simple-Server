@@ -1,211 +1,204 @@
-# SimpleServer
+# Simple-Server
 
-Um framework de servidor modular e simples desenvolvido em Java, baseado em NIO (Non-blocking I/O) com suporte a diferentes tipos de protocolos através de ConnectionHandlers personalizáveis.
+Simple-Server is a Java-based, modular server project built with Gradle.
 
-Em desenvolvimento!
+It is organized as a multi-module workspace:
+- `core`: shared server abstractions and infrastructure
+- `http`: HTTP application layer on top of `core`
+- root application: packaging, runnable JAR, and Windows EXE generation
 
-## 🚀 Características
+## Features
 
-- **Servidor NIO**: Baseado em Java NIO Selector para lidar com muitas de conexões ao mesmo tempo
-- **Sistema de Injeção de Dependências**: Container IoC próprio com `@AutoWired` e `@Bean`
-- **Logging**: Sistema de log colorizado com diferentes níveis
-- **Suporte HTTP Built-in**: ConnectionHandler HTTP pré-implementado com sistema de roteamento
+- Multi-module architecture (`core` + `http`)
+- Java NIO/event-driven server approach (see architecture docs)
+- External configuration through `server.properties`
+- Lightweight DI/annotation-based component discovery
+- HTTP routing via annotations like `@Controller`, `@GetMapping`, `@PostMapping`, and `@RequestMapping`
+- Runnable fat JAR from the root project
+- Windows executable generation via Launch4j
 
-## 📋 Pré-requisitos
+## Project Structure
 
-- Java 11 ou superior
-- Gradle 7.0+
-
-## 🛠️ Dependências Principais
-
-- **Jackson Databind** (2.18.3): Serialização/deserialização JSON
-- **Hibernate Validator** (8.0.1): Validação de dados
-- **Lombok** (1.18.38): Redução de boilerplate
-- **Jakarta EL** (4.0.2): Expression Language para validação
-
-## 📦 Instalação
-
-1. Clone o repositório:
-```bash
-git clone https://github.com/luizgustavosgobi/Simple-Server
-cd SimpleServer
+```text
+Simple-Server/
+  core/
+  http/
+  src/main/java/br/com/luizgustavosgobi/testes/Main.java
+  src/main/resources/server.properties
+  docs/
 ```
 
-2. Execute o build:
-```bash
-./gradlew build
+## Requirements
+
+- JDK 11 or newer
+- Gradle Wrapper (already included: `gradlew` / `gradlew.bat`)
+
+## Build
+
+Use the Gradle Wrapper from the repository root.
+
+```powershell
+.\gradlew.bat clean build
 ```
 
-3. Execute a aplicação de exemplo:
-```bash
-./gradlew run
+To build the runnable JAR:
+
+```powershell
+.\gradlew.bat jar
 ```
 
-## 🎯 Uso Básico
+Generated artifact:
+- `build/libs/SimpleServer-1.0.jar`
 
-### Servidor Customizado
+## Run
+
+Run the packaged JAR:
+
+```powershell
+java -jar build\libs\SimpleServer-1.0.jar
+```
+
+The default entry point is `br.com.luizgustavosgobi.testes.Main`.
+
+## Code Walkthrough
+
+The current bootstrap is minimal and starts the HTTP application on a chosen port:
 
 ```java
-import br.com.luizgustavosgobi.simpleServer.core.ServerFactory;
-import br.com.luizgustavosgobi.simpleServer.core.connection.ConnectionHandler;
-
-// Implementar seu próprio ConnectionHandler
-public class MyConnectionHandler implements ConnectionHandler {
-    @Override
-    public void onAccept(SocketChannel client) {
-        System.out.println("Cliente conectado: " + client.socket().getInetAddress());
-    }
-    
-    @Override
-    public void onRead(SocketChannel client, byte[] data) {
-        String message = new String(data);
-        System.out.println("Recebido: " + message);
-        // Processe os dados e envie resposta
-    }
-    
-    @Override
-    public void onClose(SocketChannel client) {
-        System.out.println("Cliente desconectado");
-    }
-}
-
-public class Main {
-    public static void main(String[] args) throws Exception {
-        // Criar servidor customizado
-        Server server = ServerFactory.create(Main.class, 8080, new MyConnectionHandler());
-        server.start();
-        
-        // Servidor fica rodando até ser interrompido
-        System.in.read();
-        server.close();
-    }
+public static void main(String[] args) throws IOException {
+    Server application = HttpApplication.run(Main.class, 80);
+    Console.getInstance().loop();
 }
 ```
 
-### Servidor HTTP (Uso Simplificado)
+`HttpApplication.run(...)` creates and wires:
+- `Router`
+- `HttpConnectionHandler`
+- JSON support with Jackson (`ObjectMapper`)
+- bean validation (`Validator`)
+- converter pipeline (`ByteToStringCodec` + `StringToHttpCoded`)
+
+## Controller Example (Current Project Style)
+
+A real controller from the project:
 
 ```java
-import br.com.luizgustavosgobi.simpleServer.http.HttpApplication;
-
-public class HttpMain {
-    public static void main(String[] args) {
-        // Inicia servidor HTTP com roteamento automático
-        Server server = HttpApplication.run(HttpMain.class, 8080);
-    }
-}
-```
-
-### Criando Controllers HTTP
-
-```java
-import br.com.luizgustavosgobi.simpleServer.http.annotations.Controller;
-import br.com.luizgustavosgobi.simpleServer.http.annotations.GetMapping;
-import br.com.luizgustavosgobi.simpleServer.http.annotations.PostMapping;
-
 @Controller
-public class ApiController {
-    
-    @GetMapping(path = "/api/status")
-    public ResponseEntity<String> status() {
-        return ResponseEntity.status(HttpStatus.OK).body("Server is running!");
+public class MainController {
+
+    private final MainService service;
+
+    public MainController(MainService service) {
+        this.service = service;
     }
-    
-    @PostMapping(path = "/api/data")
-    public ResponseEntity<MyDto> receiveData(MyDto data) {
-        // Processamento automático do JSON
-        return ResponseEntity.status(HttpStatus.OK).body(data);
+
+    @GetMapping(path = "/")
+    public ResponseEntity<String> greeting() {
+        return ResponseEntity.ok("Hello, World! Service called successfully!");
     }
 }
 ```
 
-### Sistema de Injeção de Dependências
+## More Route Examples
+
+You can create handlers with query params, headers, and body mapping:
 
 ```java
-import br.com.luizgustavosgobi.simpleServer.core.beans.annotations.Bean;
-import br.com.luizgustavosgobi.simpleServer.core.beans.annotations.AutoWired;
-
-@Bean
-public class DatabaseService {
-    public void save(Object data) {
-        // Implementação de salvamento
-    }
-}
-
-@Controller  
+@Controller
 public class UserController {
-    
-    @AutoWired
-    private DatabaseService databaseService;
-    
+
+    @GetMapping(path = "/users")
+    public ResponseEntity<String> list(
+            @RequestParam(value = "page", required = false) Integer page,
+            @RequestHeader(value = "x-request-id", required = false) String requestId
+    ) {
+        int safePage = page == null ? 1 : page;
+        return ResponseEntity.ok("page=" + safePage + ", requestId=" + requestId);
+    }
+
     @PostMapping(path = "/users")
-    public ResponseEntity<?> createUser(User user) {
-        databaseService.save(user);
-        return ResponseEntity.status(HttpStatus.CREATED).build();
+    public ResponseEntity<String> create(@RequestBody CreateUserRequest body) {
+        return ResponseEntity.status(201).body("created: " + body.name());
+    }
+
+    @RequestMapping(path = "/health", method = HttpMethod.GET)
+    public ResponseEntity<String> health() {
+        return ResponseEntity.ok("ok");
     }
 }
 ```
 
-## ⚙️ Configuração Avançada
-
-### Arquivo server.properties
-
-```properties
-# Configurações do servidor principal
-server.port=8080
-
-# Servidor secundário (múltiplas instâncias)
-server.2.port=8081
-
-server.blocking=false
-```
-
-### Múltiplos Servidores
+Example body DTO:
 
 ```java
-public class MultiServerMain {
-    public static void main(String[] args) throws Exception {
-        // Servidor HTTP na porta 8080
-        Server httpServer = HttpApplication.run(MultiServerMain.class, 8080);
-        
-        // Servidor TCP customizado na porta 8081  
-        Server tcpServer = ServerFactory.create(MultiServerMain.class, 8081, new MyTcpHandler());
-        tcpServer.start();
-    }
-}
+public record CreateUserRequest(String name, Integer age) {}
 ```
 
-## 🏗️ Arquitetura
+## cURL Examples
 
-### Componentes Core
+With the current sample controller (`MainController`):
 
-- **Server**: Servidor NIO principal que gerencia o Selector e aceita conexões
-- **ServerFactory**: Factory para criação de servidores com diferentes configurações
-- **ConnectionHandler**: Interface para processar diferentes tipos de protocolos
-- **ConnectionTable**: Gerencia o estado de todas as conexões ativas
-- **ThreadManager**: Pool de threads otimizado para operações I/O e CPU-intensivas
-- **ApplicationContext**: Container IoC para gerenciamento de beans e dependências
-
-### Estrutura do Projeto
-
-```
-src/main/java/br/com/luizgustavosgobi/simpleServer/
-├── core/                   # Núcleo do servidor NIO
-│   ├── beans/             # Sistema de injeção de dependências  
-│   ├── configuration/     # Gerenciamento de configurações
-│   ├── connection/        # Gerenciamento de conexões TCP
-│   ├── context/          # Contexto da aplicação (IoC Container)
-│   ├── executors/        # Gerenciamento de threads
-│   └── server/           # Servidor principal e factory
-├── http/                  # Implementação HTTP (ConnectionHandler especializado)
-│   ├── annotations/      # Anotações para roteamento HTTP
-│   ├── entities/         # Request/Response entities
-│   ├── parser/          # Parser de protocolo HTTP
-│   ├── router/          # Sistema de roteamento
-│   └── types/           # Tipos de dados HTTP (JSON, FormData, etc.)
-├── logger/               # Sistema de logging
-└── utils/               # Utilitários gerais
+```bash
+curl -i http://localhost:8080/
 ```
 
----
+If you add the `UserController` example above:
 
-Desenvolvido por Luiz Gustavo Sgobi
+```bash
+curl -i "http://localhost:8080/users?page=2" -H "x-request-id: demo-123"
+curl -i -X POST http://localhost:8080/users -H "Content-Type: application/json" -d "{\"name\":\"Ana\",\"age\":27}"
+curl -i http://localhost:8080/health
+```
+
+## Windows EXE
+
+This project uses Launch4j in the root `build.gradle`.
+
+Create the executable:
+
+```powershell
+.\gradlew.bat createExe
+```
+
+Expected output:
+- `build/launch4j/SimpleServer.exe`
+
+## Configuration
+
+Main configuration file:
+- `src/main/resources/server.properties`
+
+Current sample values:
+
+```ini
+server.port=8080
+server.2.port=8081
+```
+
+Additional documented properties are listed in:
+- `docs/server_properties.md`
+
+## Tests
+
+Run all tests:
+
+```powershell
+.\gradlew.bat test
+```
+
+## Architecture Docs
+
+For diagrams and architecture notes, see:
+- `docs/ARCHITECTURE_DIAGRAMS.md`
+- `docs/IO_ARCHITECTURE_DIAGRAMS.md`
+
+## Notes
+
+- `@RequestParam` and `@RequestHeader` support primitive conversions (`String`, `int`, `long`, `double`, `boolean` and wrappers).
+- `@RequestBody` is deserialized with Jackson and validated with Jakarta Validation when constraints are present.
+- The architecture docs and some internal comments are still in Portuguese.
+
+## License
+
+This project is licensed under the terms of the `LICENSE` file in the repository root.
+

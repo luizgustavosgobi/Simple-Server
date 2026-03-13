@@ -34,18 +34,17 @@ public @interface EnableFilters {
         @Override
         public void process(AnnotatedElement element, Annotation annotation, BeanRegistry applicationContext) throws Exception {
             Class<?> configClass = (Class<?>) element;
-            Object configInstance = applicationContext.getInstance(configClass);
+            Object configInstance = configClass.getConstructor().newInstance();
 
             List<FilterChain> chains = new ArrayList<>();
             for (Method method : configClass.getDeclaredMethods()) {
                 if (FilterChain.class.isAssignableFrom(method.getReturnType())) {
-                    method.setAccessible(true);
-
                     try {
+                        method.setAccessible(true);
                         FilterChain chain = (FilterChain) method.invoke(configInstance);
-                        if (chain != null) {
-                            chains.add(chain);
-                        }
+                        method.setAccessible(false);
+
+                        if (chain != null) chains.add(chain);
                     } catch (Exception e) {
                         Logger.Error(this, "Failed to invoke filter chain method: " + method.getName() + " - " + e.getMessage());
                     }

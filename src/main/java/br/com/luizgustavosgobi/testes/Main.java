@@ -9,13 +9,8 @@ import java.io.IOException;
 public class Main {
 
     public static void main(String[] args) throws IOException {
-//        DataPipeline pipeline =  new DataPipeline();
-//        pipeline.addLast(new ByteToStringCodec());
-//
-//        Server server = ServerFactory.create(Main.class, 80, new ConnHandler(), pipeline);
+//        Server server = ServerFactory.create(Main.class, 80, new ConnHandler());
 //        server.start();
-//
-//        Console.getInstance().loop();
 
         Server application = HttpApplication.run(Main.class, 80);
 

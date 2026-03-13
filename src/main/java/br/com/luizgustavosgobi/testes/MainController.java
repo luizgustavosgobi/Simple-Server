@@ -13,9 +13,8 @@ public class MainController {
         this.service = service;
     }
 
-    @GetMapping(path = "/a")
+    @GetMapping(path = "/")
     public ResponseEntity<String> greeting() {
-        //service.greeting();
         return ResponseEntity.ok("Hello, World! Service called successfully!");
     }
 }
